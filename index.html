@@ -677,9 +677,11 @@
         font-size: 0.8rem;
         padding: 4px 0;
       }
-      .top-bar span {
+      .top-bar span,
+      .top-bar a {
         font-size: 1.6rem;
-        color: #E8E8E8 !important; /* Явно задаем белый цвет для мобильной версии */
+        color: var(--text-light) !important; /* Белый цвет для номера телефона */
+        text-decoration: none; /* Убираем подчёркивание для ссылок */
       }
     }
   </style>
