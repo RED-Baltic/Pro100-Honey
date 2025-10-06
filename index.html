@@ -38,19 +38,18 @@
     }
 
     .top-bar {
-      background: var(--card-dark); /* Changed to match container color */
+      background: var(--card-dark);
       color: var(--text-light);
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
       font-weight: 400;
       padding: 6px 20px;
       margin-top: 20px;
-      margin-bottom: 0; /* Adjusted to remove gap */
+      margin-bottom: 0;
       max-width: var(--container-width);
       margin-left: auto;
       margin-right: auto;
       position: relative;
-      border-bottom: 1px solid var(--accent-gold-dark);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -68,14 +67,12 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: center; /* Center all items */
+      justify-content: space-between; /* Adjusted to space elements */
       gap: 24px;
-      background: var(--card-dark); /* Changed to match container color */
+      background: var(--card-dark);
       margin-bottom: 20px;
-      flex-wrap: nowrap; /* Prevent wrapping */
-      position: relative;
-      border-bottom: 1px solid var(--accent-gold-dark);
-      padding: 8px 20px; /* Adjusted padding */
+      flex-wrap: nowrap;
+      padding: 8px 20px;
     }
     .header-left {
       display: flex;
@@ -86,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex: 1; /* Ensures title stays centered */
     }
     .header-right {
       display: flex;
@@ -94,7 +92,7 @@
     }
     .header-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
+      font-size: 2rem; /* Reduced font size from 2.8rem */
       font-weight: 700;
       color: var(--accent-gold);
       margin: 0;
@@ -603,21 +601,21 @@
       header {
         flex-wrap: nowrap;
         gap: 12px;
-        justify-content: center;
-        padding: 8px 12px; /* Adjusted for mobile */
+        justify-content: space-between; /* Adjusted for mobile */
+        padding: 8px 12px;
       }
       .header-title {
-        font-size: 1.8rem;
+        font-size: 1.4rem; /* Reduced further for mobile */
       }
       .header-left {
-        position: static; /* Removed absolute positioning for mobile */
+        position: static;
       }
       .header-center {
-        flex: 0;
+        flex: 1;
         justify-content: center;
       }
       .header-right {
-        position: static; /* Removed absolute positioning for mobile */
+        position: static;
         max-width: 120px;
       }
       .hamburger {
@@ -899,7 +897,6 @@
           "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)"
         ],
         products: [
-        
          {name: "Свеча ", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"},
           {name: "Крем для рук", price: "8.00", img: "photo/krems.jpg", description: "Крем для рук с экстрактом мёда. 98% натуральный состав. Объём - 50 мл"},
           {name: "Восковые салфетки для хранения продуктов", price: "10.00", img: "photo/salfete.jpg", description: "Альтернативная замена пищевой пленки и контейнеров. Салфетки из 100% хлопка, пропитанные пчелиным воском. Под теплом рук принимают любую форму."},
