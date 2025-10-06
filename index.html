@@ -226,16 +226,17 @@
       color: var(--text-light);
     }
  .banner {
-  width: 100%; /* Занимает всю ширину родительского контейнера */
-  margin-bottom: 32px;
+  width: 100%; /* Совпадает с шириной .wrap */
+  max-width: var(--container-width); /* Ограничивает ширину до 1280px, как у .wrap */
+  margin: 0 auto 32px; /* Центрирует и добавляет отступ снизу */
   border-radius: var(--radius);
   overflow: hidden;
 }
 
 .banner img {
-  width: 100%; /* Растягивается на всю ширину */
-  height: auto; /* Высота подстраивается, чтобы сохранить пропорции */
-  aspect-ratio: 16 / 9; /* Сохраняет пропорции изображения */
+  width: 100%; /* Занимает всю ширину контейнера .banner */
+  height: auto; /* Высота подстраивается под пропорции */
+  aspect-ratio: 16 / 9; /* Сохраняет пропорции */
   object-fit: contain; /* Изображение отображается полностью без обрезки */
   display: block;
 }
@@ -1244,6 +1245,7 @@
 </body>
 
 </html>
+
 
 
 
