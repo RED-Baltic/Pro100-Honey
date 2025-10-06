@@ -43,18 +43,23 @@
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
       font-weight: 400;
-      text-align: center;
-      padding: 6px 0;
+      padding: 6px 20px;
       margin-bottom: 20px;
       width: 100%;
       position: relative;
       border-bottom: 1px solid var(--accent-gold-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .top-bar span {
       color: var(--text-light);
-      font-size: 2rem;
-      display: block;
-      text-align: center;
+      font-size: 1.2rem;
+    }
+    .top-bar a {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      text-decoration: none;
     }
 
     header {
@@ -675,20 +680,23 @@
       }
       .top-bar {
         font-size: 0.8rem;
-        padding: 4px 0;
+        padding: 4px 12px;
       }
       .top-bar span,
       .top-bar a {
         font-size: 1.2rem;
-        color: var(--text-light) !important; /* Белый цвет для номера телефона */
-        text-decoration: none; /* Убираем подчёркивание для ссылок */
+        color: var(--text-light) !important;
+        text-decoration: none;
       }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="top-bar"><span>+37120392288</span></div>
+    <div class="top-bar">
+      <span>+37120392288</span>
+      <a href="mailto:aleksejs_kachans@inbox.lv">aleksejs_kachans@inbox.lv</a>
+    </div>
     <header>
       <div class="header-left">
         <div class="hamburger">
@@ -1265,5 +1273,3 @@
   </script>
 </body>
 </html>
-
-
