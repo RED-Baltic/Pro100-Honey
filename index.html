@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="lv">
 <head>
   <meta charset="UTF-8" />
@@ -34,7 +34,7 @@
     .wrap { 
       width: 100%; 
       max-width: var(--container-width); 
-      margin: 0;
+      margin: 0 auto;
     }
 
     .top-bar {
@@ -58,7 +58,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 32px;
-      margin-bottom: 48px;
+      margin-bottom: 24px; /* Reduced from 48px to 24px to halve the distance */
       flex-wrap: wrap;
       position: relative;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -225,21 +225,25 @@
       font-size: 14px;
       color: var(--text-light);
     }
- .banner {
-  width: 100%; /* Совпадает с шириной .wrap */
-  max-width: var(--container-width); /* Ограничивает ширину до 1280px, как у .wrap */
-  margin: 0 auto 32px; /* Центрирует и добавляет отступ снизу */
-  border-radius: var(--radius);
-  overflow: hidden;
-}
+    .banner {
+      width: 100vw; /* Full viewport width */
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-bottom: 32px; /* Kept as is */
+      border-radius: 0; /* Remove radius for full-width effect */
+      overflow: hidden;
+    }
 
-.banner img {
-  width: 100%; /* Занимает всю ширину контейнера .banner */
-  height: auto; /* Высота подстраивается под пропорции */
-  aspect-ratio: 16 / 9; /* Сохраняет пропорции */
-  object-fit: contain; /* Изображение отображается полностью без обрезки */
-  display: block;
-}
+    .banner img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+    }
 
     .grid { 
       display: grid; 
@@ -592,7 +596,7 @@
         padding-right: 12px;
       }
       .header-title {
-        font-size: 2.4rem;
+        font-size: 1.2rem; /* Reduced from 2.4rem to 1.2rem (halved) */
       }
       .header-left {
         position: absolute;
@@ -826,16 +830,16 @@
           "Skaidrā naudā vai ar kredītkarti veikalā",
           "Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)"
         ],
-       products: [
-  {name: "Vaska salvetes pārtikas uzglabāšanai", price: "10.00", img: "photo/salfete.jpg", description: "Alternatīva pārtikas plēvei un konteineriem. Salvetes no 100% kokvilnas, piesūcinātas ar bišu vasku. No roku siltuma iegūst jebkuru formu."},
-  {name: "Universāla ziede no bišu vaska ar propolisu", price: "9.00", img: "photo/ziede.jpg", description: "Sastāvs – vasks, augsts propolisa saturs un augu eļļas. Reģenerē ādu, veicina brūču un apdegumu dzīšanu, dezinficē, mīkstina ādu. Mazina iekaisumus un lobīšanos."},
-  {name: "Lūpu vasks", price: "5.00", img: "photo/vaska.jpg", description: "Sastāv no bišu vaska, vīnogu kauliņu eļļas, kokosriekstu eļļas, propolisa un vaniļas ēteriskās eļļas. Kopj lūpas."},
-  {name: "Balzams", price: "6.00", img: "photo/balzams.jpg", description: "Sastāvā bišu vasks, propoliss, piparmētru, eikalipta un kanēļa ēteriskās eļļas. Iedarbība gan atvēsinoša, gan sildoša."},
-  {name: "Nazālais inhalators", price: "7.00", img: "photo/inhalators.jpg", description: "Nazālais inhalators ar propolisu un piparmētru, eikalipta un citrona ēteriskajām eļļām. Palīdz pie aizlikta deguna, atvieglo elpošanu."},
-  {name: "Roku krēms", price: "8.00", img: "photo/krems.jpg", description: "Roku krēms ar medus ekstraktu. 98% dabīgs sastāvs. Tilpums – 50 ml."},
-  {name: "Svece", price: "4.00", img: "photo/svece.jpg", description: "Svece burciņā no bišu vaska ar medus un mājīguma aromātu. Augstums – 3,5 cm. Diametrs – 5 cm. Svars – 50 g."}
-]
- },
+        products: [
+          {name: "Vaska salvetes pārtikas uzglabāšanai", price: "10.00", img: "photo/salfete.jpg", description: "Alternatīva pārtikas plēvei un konteineriem. Salvetes no 100% kokvilnas, piesūcinātas ar bišu vasku. No roku siltuma iegūst jebkuru formu."},
+          {name: "Universāla ziede no bišu vaska ar propolisu", price: "9.00", img: "photo/ziede.jpg", description: "Sastāvs – vasks, augsts propolisa saturs un augu eļļas. Reģenerē ādu, veicina brūču un apdegumu dzīšanu, dezinficē, mīkstina ādu. Mazina iekaisumus un lobīšanos."},
+          {name: "Lūpu vasks", price: "5.00", img: "photo/vaska.jpg", description: "Sastāv no bišu vaska, vīnogu kauliņu eļļas, kokosriekstu eļļas, propolisa un vaniļas ēteriskās eļļas. Kopj lūpas."},
+          {name: "Balzams", price: "6.00", img: "photo/balzams.jpg", description: "Sastāvā bišu vasks, propoliss, piparmētru, eikalipta un kanēļa ēteriskās eļļas. Iedarbība gan atvēsinoša, gan sildoša."},
+          {name: "Nazālais inhalators", price: "7.00", img: "photo/inhalators.jpg", description: "Nazālais inhalators ar propolisu un piparmētru, eikalipta un citrona ēteriskajām eļļām. Palīdz pie aizlikta deguna, atvieglo elpošanu."},
+          {name: "Roku krēms", price: "8.00", img: "photo/krems.jpg", description: "Roku krēms ar medus ekstraktu. 98% dabīgs sastāvs. Tilpums – 50 ml."},
+          {name: "Svece", price: "4.00", img: "photo/svece.jpg", description: "Svece burciņā no bišu vaska ar medus un mājīguma aromātu. Augstums – 3,5 cm. Diametrs – 5 cm. Svars – 50 g."}
+        ]
+      },
       ru: { 
         title: "Наши товары", 
         cartTitle: "Корзина", 
@@ -878,18 +882,19 @@
           "Наличными или кредитной картой в магазине",
           "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)"
         ],
-       products: [
-{name: "Восковые салфетки для хранения продуктов", price: "10.00", img: "photo/salfete.jpg", description: "Альтернативная замена пищевой пленки и контейнеров. Салфетки из 100% хлопка, пропитанные пчелиным воском. Под теплом рук принимают любую форму."},
-         {name: "Универсальная мазь из пчелиного воска с прополисом", price: "9.00", img: "photo/ziede.jpg", description: "Состав-воск,высокое содержание прополиса и растительные масла. Регенерирует кожу, способствует заживлению ран и ожогов, обеззараживает, смягчает кожу. Снимает воспаления и шелушения."},
+        products: [
+          {name: "Восковые салфетки для хранения продуктов", price: "10.00", img: "photo/salfete.jpg", description: "Альтернативная замена пищевой пленки и контейнеров. Салфетки из 100% хлопка, пропитанные пчелиным воском. Под теплом рук принимают любую форму."},
+          {name: "Универсальная мазь из пчелиного воска с прополисом", price: "9.00", img: "photo/ziede.jpg", description: "Состав-воск,высокое содержание прополиса и растительные масла. Регенерирует кожу, способствует заживлению ран и ожогов, обеззараживает, смягчает кожу. Снимает воспаления и шелушения."},
           {name: "Воск для губ", price: "5.00", img: "photo/vaska.jpg", description: "Состоит из пчелиного воска, мала виноградной косточки, кокосового масла, прополиса и эфирного масла ванили. Ухаживает за губами. "},
-         {name: "Бальзам", price: "6.00", img: "photo/balzams.jpg", description: "В составе пчелиный воск, прополис, эфирные масла мяты, эвкалипта и корицы. Действие как охлаждающее, так и согревающее."},
-       {name: "Назальный ингалятор", price: "7.00", img: "photo/inhalators.jpg", description: "Назальный ингалятор с прополисом и эфирными маслами мяты, эвкалипта и лимона. Помогает при заложенности носа, облегчает дыхание ."},
-        {name: "Крем для рук", price: "8.00", img: "photo/krems.jpg", description: "Крем для рук с экстрактом мёда. 98% натуральный состав. Объём - 50 мл"},
-        {name: "Свеча ", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"}
-   ]
+          {name: "Бальзам", price: "6.00", img: "photo/balzams.jpg", description: "В составе пчелиный воск, прополис, эфирные масла мяты, эвкалипта и корицы. Действие как охлаждающее, так и согревающее."},
+          {name: "Назальный ингалятор", price: "7.00", img: "photo/inhalators.jpg", description: "Назальный ингалятор с прополисом и эфирными маслами мяты, эвкалипта и лимона. Помогает при заложенности носа, облегчает дыхание ."},
+          {name: "Крем для рук", price: "8.00", img: "photo/krems.jpg", description: "Крем для рук с экстрактом мёда. 98% натуральный состав. Объём - 50 мл"},
+          {name: "Свеча ", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"}
+        ]
       }
     };
-  function loadLockers(lang) {
+
+    function loadLockers(lang) {
       const jsonFile = 'venipak-points.json';
       const select = $('#locker-select');
       select.empty();
@@ -1243,19 +1248,4 @@
     });
   </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
