@@ -7,14 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Playfair+Display:wght@400;600;700;800&family=Vladimir+Script&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #1A1A1A; /* Deep black for premium background */
-      --card-dark: #2A2A2A; /* Dark gray for cards */
-      --card-light: #3C3C3C; /* Light gray for hover effects */
-      --muted: #6B6B6B; /* Warm gray for secondary text */
-      --accent-gold: #D4A017; /* Warm gold for accents */
-      --accent-gold-dark: #B58900; /* Darker gold for hover states */
-      --text-light: #E8E8E8; /* Soft white for main text */
-      --text-dark: #0F0F0F; /* Dark for text on light backgrounds */
+      --bg-dark: #1A1A1A;
+      --card-dark: #2A2A2A;
+      --card-light: #3C3C3C;
+      --muted: #6B6B6B;
+      --accent-gold: #D4A017;
+      --accent-gold-dark: #B58900;
+      --text-light: #E8E8E8;
+      --text-dark: #0F0F0F;
       --radius: 8px;
       --container-width: 1280px;
     }
@@ -160,25 +160,25 @@
       width: 36px;
       height: 36px;
       cursor: pointer;
-      padding: 6px; /* Copied from ideal code */
+      padding: 6px;
     }
     .hamburger span {
-      background: var(--accent-gold); /* Changed to white */
-      height: 4px; /* Copied from ideal code */
-      width: 100%; /* Full width */
-      margin: 4px 0; /* Copied from ideal code */
+      background: var(--accent-gold);
+      height: 4px;
+      width: 100%;
+      margin: 4px 0;
       border-radius: 1.5px;
       transition: all 0.3s ease;
-      transform-origin: center; /* Kept for consistency */
+      transform-origin: center;
     }
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px); /* Copied from ideal code */
+      transform: rotate(45deg) translate(8px, 8px);
     }
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
     .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(8px, -8px); /* Copied from ideal code */
+      transform: rotate(-45deg) translate(8px, -8px);
     }
 
     .dropdown-menu {
@@ -576,113 +576,113 @@
       } 
       .header-right { max-width: 320px; }
     }
-    @media (max-width: 700px) {
-  .products-list { 
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .product-card { 
-    min-height: 300px;
-    padding: 12px;
-  }
-  .product-card img {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    max-height: 150px;
-    object-fit: cover;
-    border-radius: var(--radius);
-  }
-  header {
-    flex-wrap: nowrap;
-    gap: 12px;
-    justify-content: center;
-    padding-bottom: 12px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .header-title {
-    font-size: 1.8rem;
-  }
-  .header-left {
-    position: absolute;
-    left: 12px;
-    z-index: 10;
-  }
-  .header-center {
-    flex: 0;
-    justify-content: center;
-  }
-  .header-right {
-    position: absolute;
-    right: 12px;
-    z-index: 10;
-    max-width: 120px;
-  }
-  .hamburger {
-    width: 24px; /* Reduced from 30px */
-    height: 24px; /* Reduced from 30px */
-    padding: 4px; /* Reduced from 5px */
-  }
-  .hamburger span {
-    height: 2px; /* Reduced from 3px */
-    margin: 2px 0; /* Reduced from 3px */
-    width: 100%;
-    background: var(--accent-gold);
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px); /* Reduced from 6px */
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px); /* Reduced from 6px */
-  }
-  .simpleCart_items table { 
-    font-size: 13px; 
-  }
-  .simpleCart_items .simpleCart_remove { 
-    padding: 6px 10px; 
-    font-size: 13px; 
-  }
-  .dropdown-menu { 
-    left: 12px; 
-  }
-  .lang-selector .lang-btn { 
-    padding: 6px 10px; 
-    font-size: 13px; 
-  }
-  .lang-dropdown { 
-    min-width: 100px; 
-  }
-  .phone-number { 
-    font-size: 13px; 
-  }
-  .header-right { 
-    max-width: 220px; 
-  }
-  .modal img {
-    max-width: 100%;
-    aspect-ratio: 3 / 4;
-    height: auto;
-    object-fit: cover;
-    border-radius: var(--radius);
-  }
-  .banner img {
-    max-height: 250px;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
-  .top-bar {
-    font-size: 0.8rem;
-    padding: 4px 0;
-  }
-  .top-bar span {
-    margin-left: 12px;
-  }
-}
+    @media (max-width: 700px) { 
+      .products-list { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .product-card { 
+        min-height: 300px;
+        padding: 12px;
+      }
+      .product-card img {
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        max-height: 150px;
+        object-fit: cover;
+        border-radius: var(--radius);
+      }
+      header {
+        flex-wrap: nowrap;
+        gap: 12px;
+        justify-content: center;
+        padding-bottom: 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .header-title {
+        font-size: 1.8rem;
+      }
+      .header-left {
+        position: absolute;
+        left: 12px;
+        z-index: 10;
+      }
+      .header-center {
+        flex: 0;
+        justify-content: center;
+      }
+      .header-right {
+        position: absolute;
+        right: 12px;
+        z-index: 10;
+        max-width: 120px;
+      }
+      .hamburger {
+        width: 24px;
+        height: 24px;
+        padding: 4px;
+      }
+      .hamburger span {
+        height: 2px;
+        margin: 2px 0;
+        width: 100%;
+        background: var(--accent-gold);
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(4.5px, 4.5px); /* Adjusted for centered cross */
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(4.5px, -4.5px); /* Adjusted for centered cross */
+      }
+      .simpleCart_items table { 
+        font-size: 13px; 
+      }
+      .simpleCart_items .simpleCart_remove { 
+        padding: 6px 10px; 
+        font-size: 13px; 
+      }
+      .dropdown-menu { 
+        left: 12px; 
+      }
+      .lang-selector .lang-btn { 
+        padding: 6px 10px; 
+        font-size: 13px; 
+      }
+      .lang-dropdown { 
+        min-width: 100px; 
+      }
+      .phone-number { 
+        font-size: 13px; 
+      }
+      .header-right { 
+        max-width: 220px; 
+      }
+      .modal img {
+        max-width: 100%;
+        aspect-ratio: 3 / 4;
+        height: auto;
+        object-fit: cover;
+        border-radius: var(--radius);
+      }
+      .banner img {
+        max-height: 250px;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+      .top-bar {
+        font-size: 0.8rem;
+        padding: 4px 0;
+      }
+      .top-bar span {
+        margin-left: 12px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="top-bar"><span>+371 20392288</span></div>
+    <div class="top-bar"><span>+37120392288</span></div>
     <header>
       <div class="header-left">
         <div class="hamburger">
@@ -703,7 +703,7 @@
         </div>
       </div>
       <div class="header-center">
-        <h1 class="header-title">Pro_100%Honey</h1>
+        <h1 class="header-title">Pro100%Honey</h1>
       </div>
       <div class="header-right">
         <div class="lang-selector">
@@ -1259,7 +1259,3 @@
   </script>
 </body>
 </html>
-
-
-
-
