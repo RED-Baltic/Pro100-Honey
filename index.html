@@ -238,13 +238,8 @@
       color: var(--text-light);
     }
     .banner {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      margin-bottom: 32px;
+      max-width: var(--container-width); /* Constrain to container width */
+      margin: 0 auto 32px; /* Center with auto margins, keep bottom margin */
       border-radius: 0;
       overflow: hidden;
     }
@@ -908,7 +903,6 @@
           "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)"
         ],
         products: [
-        
          {name: "Свеча ", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"},
           {name: "Крем для рук", price: "8.00", img: "photo/krems.jpg", description: "Крем для рук с экстрактом мёда. 98% натуральный состав. Объём - 50 мл"},
           {name: "Восковые салфетки для хранения продуктов", price: "10.00", img: "photo/salfete.jpg", description: "Альтернативная замена пищевой пленки и контейнеров. Салфетки из 100% хлопка, пропитанные пчелиным воском. Под теплом рук принимают любую форму."},
@@ -1275,10 +1269,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
