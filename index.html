@@ -1,0 +1,1243 @@
+﻿<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <title>RED — Veikals / Grozs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Playfair+Display:wght@400;600;700;800&family=Vladimir+Script&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #E8E3DB;
+      --card-light: #F5F3EF;
+      --card-dark: #EDEAE4;
+      --muted: #5C5A56;
+      --accent-gold: #A68A64;
+      --accent-gold-dark: #8B724C;
+      --text-light: #3A3A3A;
+      --text-dark: #1F1F1F;
+      --radius: 8px;
+      --container-width: 1280px;
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      justify-content: center;
+      padding: 0 0 60px;
+    }
+    .wrap { 
+      width: 100%; 
+      max-width: var(--container-width); 
+      margin: 0;
+    }
+
+    .top-bar {
+      background: #1F1F1F;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: left;
+      padding: 6px 0;
+      margin-bottom: 20px;
+      width: 100%;
+      position: relative;
+    }
+    .top-bar span {
+      margin-left: 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      position: relative;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 16px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+    }
+    .header-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .header-title {
+      font-family: 'Vladimir Script', cursive;
+      font-size: 4.8rem;
+      font-weight: bold;
+      color: var(--accent-gold);
+      margin: 0;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .lang-selector {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .lang-selector .lang-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--accent-gold);
+      background: transparent;
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+    .lang-selector .lang-btn:hover {
+      background: var(--accent-gold);
+      color: var(--text-dark);
+    }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-light);
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 120px;
+      z-index: 100;
+      padding: 8px 0;
+    }
+    .lang-selector:hover .lang-dropdown {
+      display: block;
+    }
+    .lang-dropdown button {
+      display: block;
+      width: 100%;
+      padding: 8px 20px;
+      background: var(--card-light);
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .lang-dropdown button:hover {
+      background: var(--card-dark);
+      color: var(--accent-gold);
+    }
+    .phone-number {
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .hamburger span {
+      background: var(--text-light);
+      height: 3px;
+      margin: 5px 0;
+      border-radius: 1.5px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--card-light);
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 240px;
+      z-index: 100;
+      padding: 8px 0;
+    }
+    .dropdown-menu.active {
+      display: block;
+    }
+    .dropdown-menu button {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .dropdown-menu button:hover {
+      background: var(--card-dark);
+      color: var(--accent-gold);
+    }
+    .dropdown-content {
+      display: none;
+      padding: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .dropdown-content.active {
+      display: block;
+    }
+    .dropdown-content p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    .banner {
+      width: 100%;
+      max-width: var(--container-width);
+      margin-bottom: 32px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      max-height: 400px;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 48px; 
+      align-items: start; 
+    }
+
+    .products-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--card-light);
+      color: var(--text-light);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-height: 380px;
+      cursor: pointer;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin: 0;
+      padding: 0;
+      background: var(--card-dark);
+    }
+    .product-card h3 {
+      margin: 8px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    .product-card .price {
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .product-card .add-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      border-radius: var(--radius);
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .product-card .add-btn:hover {
+      background: var(--accent-gold);
+      color: var(--text-dark);
+    }
+    .product-card .add-btn:active { transform: translateY(1px); }
+
+    .panel {
+      background: var(--card-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      color: var(--text-light);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0 0 16px 0;
+    }
+
+    .simpleCart_items table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+    .simpleCart_items th,
+    .simpleCart_items td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-light);
+    }
+    .simpleCart_items th { font-weight: 700; }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .quantity-controls button {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius);
+      border: 1px solid var(--accent-gold);
+      background: transparent;
+      color: var(--accent-gold);
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .quantity-controls button:hover {
+      background: var(--accent-gold);
+      color: var(--text-dark);
+    }
+    .quantity-controls input {
+      width: 40px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background: var(--card-light);
+      color: var(--text-light);
+      border-radius: var(--radius);
+      font-size: 14px;
+    }
+
+    .empty-cart-btn,
+    .simpleCart_items .simpleCart_remove {
+      display: inline-block;
+      color: var(--accent-gold);
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .empty-cart-btn:hover,
+    .simpleCart_items .simpleCart_remove:hover {
+      background: var(--accent-gold);
+      color: var(--text-dark);
+    }
+
+    .cart-total {
+      margin-top: 12px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+    }
+    .cart-total .label { color: var(--muted); font-weight: 600; }
+    .cart-total .value { color: var(--text-light); font-size: 1rem; }
+
+    #locker-field { margin-top: 16px; }
+    #locker-field select {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background: var(--card-light);
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    .order-form label { display: block; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+    .order-form input[type="text"],
+    .order-form input[type="email"],
+    .order-form input[type="tel"],
+    .order-form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background: var(--card-light);
+      color: var(--text-light);
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .order-form textarea { min-height: 80px; resize: vertical; }
+    .order-form button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      border-radius: var(--radius);
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .order-form button:hover {
+      background: var(--accent-gold);
+      color: var(--text-dark);
+    }
+    .order-form button:active { transform: translateY(1px); }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background: var(--card-light);
+      margin: 5% auto;
+      padding: 24px;
+      border-radius: var(--radius);
+      width: 80%;
+      max-width: 600px;
+      color: var(--text-light);
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 12px;
+      color: var(--text-light);
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: var(--accent-gold);
+    }
+    .modal img {
+      width: 70%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin: 0 auto 16px;
+      display: block;
+    }
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin: 0 0 12px 0;
+      text-align: center;
+      color: var(--text-dark);
+    }
+    .modal .description {
+      font-size: 14px;
+      margin-bottom: 16px;
+      color: var(--text-light);
+      text-align: center;
+    }
+    .modal .price {
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .modal .add-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      border-radius: var(--radius);
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .modal .add-btn:hover {
+      background: var(--accent-gold);
+      color: var(--text-dark);
+    }
+    .modal .add-btn:active { transform: translateY(1px); }
+
+    #order-confirmation-modal .modal-content p {
+      font-size: 14px;
+      margin: 12px 0;
+      color: var(--text-light);
+    }
+    #order-confirmation-modal .modal-content strong {
+      color: var(--accent-gold);
+    }
+    .contact-soon {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: block;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 1100px) { 
+      .products-list { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      } 
+      .header-right { max-width: 320px; }
+    }
+    @media (max-width: 700px) { 
+      .products-list { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .product-card { 
+        min-height: 300px;
+        padding: 12px;
+      }
+      .product-card img {
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        max-height: 150px;
+        object-fit: cover;
+        border-radius: var(--radius);
+      }
+      header {
+        flex-wrap: nowrap;
+        gap: 12px;
+        justify-content: center;
+        padding-bottom: 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .header-title {
+        font-size: 2.4rem;
+      }
+      .header-left {
+        position: absolute;
+        left: 12px;
+        z-index: 10;
+      }
+      .header-center {
+        flex: 0;
+        justify-content: center;
+      }
+      .header-right {
+        position: absolute;
+        right: 12px;
+        z-index: 10;
+        max-width: 120px;
+      }
+      .hamburger {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+      }
+      .hamburger span {
+        height: 3px;
+        margin: 4px 0;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+      .simpleCart_items table { 
+        font-size: 13px; 
+      }
+      .simpleCart_items .simpleCart_remove { 
+        padding: 6px 10px; 
+        font-size: 13px; 
+      }
+      .dropdown-menu { 
+        left: 12px; 
+      }
+      .lang-selector .lang-btn { 
+        padding: 6px 10px; 
+        font-size: 13px; 
+      }
+      .lang-dropdown { 
+        min-width: 100px; 
+      }
+      .phone-number { 
+        font-size: 13px; 
+      }
+      .header-right { 
+        max-width: 220px; 
+      }
+      .modal img {
+        aspect-ratio: 2 / 3;
+        max-height: 150px;
+        width: 100%;
+      }
+      .banner img {
+        max-height: 250px;
+        aspect-ratio: 16 / 9;
+      }
+      .top-bar {
+        font-size: 0.8rem;
+        padding: 4px 0;
+      }
+      .top-bar span {
+        margin-left: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top-bar"><span>Welcome to the GalaShop</span></div>
+    <header>
+      <div class="header-left">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="dropdown-menu">
+          <button class="dropdown-btn" data-target="contacts">Kontakti</button>
+          <button class="dropdown-btn" data-target="details">Rekvizīti</button>
+          <button class="dropdown-btn" data-target="payment">Apmaksa</button>
+          <div class="dropdown-content" id="contacts"></div>
+          <div class="dropdown-content" id="details"></div>
+          <div class="dropdown-content" id="payment">
+            <p>Skaidrā naudā vai ar kredītkarti veikalā</p>
+            <p>Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)</p>
+          </div>
+        </div>
+      </div>
+      <div class="header-center">
+        <h1 class="header-title">GalaShop</h1>
+      </div>
+      <div class="header-right">
+        <div class="lang-selector">
+          <button class="lang-btn" id="current-lang">LV</button>
+          <div class="lang-dropdown">
+            <button class="lang-btn" data-lang="lv">LV</button>
+            <button class="lang-btn" data-lang="ru">RU</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="banner">
+        <img src="photo/baner1.jpg" alt="Promotional Banner">
+      </div>
+      <div class="products-list" id="products-list"></div>
+
+      <section class="panel" style="margin-top:28px;">
+        <div class="section-title" id="cart-title">Grozs</div>
+        <div class="cart-items" style="margin-top:14px;"><div class="simpleCart_items"></div></div>
+        <div class="cart-total" style="margin-top:12px;">
+          <div class="label" id="cart-total-label">Kopā:</div>
+          <div class="value"><span class="simpleCart_total">0.00</span> EUR</div>
+        </div>
+        <div style="margin-top:14px;">
+          <a href="javascript:;" class="empty-cart-btn simpleCart_empty" id="empty-cart">Iztīrīt grozu</a>
+        </div>
+      </section>
+
+      <section class="panel" style="margin-top:28px;">
+        <div class="section-title" id="delivery-title">Piegāde</div>
+        <div style="margin-top:14px;">
+          <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:8px;">
+            <input type="radio" name="delivery" value="Venipak pakomāts" required>
+            <span id="venipak-label" style="margin-left:8px; color:var(--muted); font-weight:600;">Venipak pakomāts (1–3 darba dienas, 4.00 EUR)</span>
+          </label>
+          <div id="locker-field" class="hidden">
+            <label id="choose-locker-label" style="display:block; color:var(--muted); margin-bottom:8px;">Izvēlieties pakomātu:</label>
+            <select id="locker-select" name="locker" required><option value="">Ielādē pakomātus...</option></select>
+          </div>
+          <label id="pickup-label-container" style="display:block; margin-top:12px; color:var(--text-light); font-weight:600;">
+            <input type="radio" name="delivery" value="Pašizņemšana Mārupē">
+            <span id="pickup-label" style="margin-left:8px; color:var(--muted); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel" style="margin-top:28px;">
+        <div class="section-title" id="order-title">Noformēt pasūtījumu</div>
+        <form class="order-form" id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="c49dd88b-948d-4903-9295-d9ab1c7b8afc">
+          <input type="hidden" name="email_to" value="galasmail@inbox.lv">
+          <input type="hidden" name="cart_contents" id="cart_contents" value="">
+          <input type="hidden" name="order_id" id="order_id" value="">
+          <label id="name-label">Jūsu vārds:<input type="text" name="customer_name" required></label>
+          <label id="email-label">E-pasts:<input type="email" name="email" required></label>
+          <label id="phone-label">Telefons:<input type="tel" name="phone" required></label>
+          <label id="comments-label">Komentāri:<textarea name="message" rows="4"></textarea></label>
+          <button type="submit" id="order-button">Pasūtīt</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="" alt="">
+      <h3></h3>
+      <p class="description"></p>
+      <div class="price"></div>
+      <a href="javascript:;" class="add-btn">Pievienot grozam</a>
+    </div>
+  </div>
+
+  <div id="order-confirmation-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="order-confirmation-title">Pasūtījums saņemts</h3>
+      <p><strong id="order-id-label">Pasūtījuma ID:</strong> <span id="confirmation-order-id"></span></p>
+      <p><strong id="order-details-label">Pasūtījuma detaļas:</strong></p>
+      <p id="confirmation-cart-details"></p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplecartjs/3.0.5/simplecart.min.js"></script>
+  <script>
+    function generateSimpleOrderId() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    const translations = {
+      lv: { 
+        title: "RED", 
+        cartTitle: "Grozs", 
+        cartTotal: "Kopā:", 
+        emptyCart: "Iztīrīt grozu", 
+        deliveryTitle: "Piegāde",
+        venipak: "Venipak pakomāts (1–3 darba dienas, 4.00 EUR)", 
+        pickup: "Pašizņemšana Imantā (BEZMAKSAS)",
+        pickupOption: "Pašizņemšana Mārupē",
+        chooseLocker: "Izvēlieties pakomātu:", 
+        orderTitle: "Noformēt pasūtījumu", 
+        name: "Jūsu vārds:", 
+        email: "E-pasts:",
+        phone: "Telefons:", 
+        comments: "Komentāri:", 
+        orderButton: "Pasūtīt",
+        addToCart: "Pievienot grozam",
+        contacts: "Kontakti",
+        details: "Rekvizīti",
+        payment: "Apmaksa",
+        orderConfirmationTitle: "Pasūtījums saņemts",
+        orderIdLabel: "Pasūtījuma ID:",
+        orderDetailsLabel: "Pasūtījuma detaļas:",
+        totalLabel: "Kopā:",
+        deliveryLabel: "Piegāde:",
+        lockerLabel: "Pakomāts:",
+        contactSoon: "Drīzumā mēs ar jums sazināsimies, lai precizētu detaļas",
+        errorEmptyCart: "Grozs ir tukšs",
+        errorDelivery: "Lūdzu, izvēlieties piegādes metodi",
+        errorLocker: "Lūdzu, izvēlieties pakomātu",
+        errorSubmission: "Pasūtījuma nosūtīšana neizdevās. Lūdzu, mēģiniet vēlreiz.",
+        contactsContent: [
+          "Latvia",
+          "+37127552280"
+        ],
+        detailsContent: [
+          "SIA GalaShop"
+        ],
+        paymentContent: [
+          "Skaidrā naudā vai ar kredītkarti veikalā",
+          "Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)"
+        ],
+        products: [
+          
+          {name: "Peony", price: "20.00", img: "photo/11E.jpg", description: "Peony"},
+          {name: "Lotos", price: "30.00", img: "photo/15E1.jpg", description: "Lotos"},
+          {name: "Rose", price: "25.00", img: "photo/200.jpg", description: "Rose"},
+          {name: "Wild Rose", price: "35.00", img: "photo/10.jpg", description: "Wild Rose"}
+        ]
+      },
+      ru: { 
+        title: "Наши товары", 
+        cartTitle: "Корзина", 
+        cartTotal: "Итого:", 
+        emptyCart: "Очистить корзину", 
+        deliveryTitle: "Доставка",
+        venipak: "Venipak (1–3 рабочих дня, 4.00 EUR)", 
+        pickup: "Самовывоз в Иманте (БЕСПЛАТНО)", 
+        pickupOption: "Самовывоз в Марупе",
+        chooseLocker: "Выберите пакомат:",
+        orderTitle: "Оформить заказ", 
+        name: "Ваше имя:", 
+        email: "E-mail:", 
+        phone: "Телефон:", 
+        comments: "Комментарии:", 
+        orderButton: "Заказать",
+        addToCart: "Добавить в корзину",
+        contacts: "Контакты",
+        details: "Реквизиты",
+        payment: "Оплата",
+        orderConfirmationTitle: "Заказ получен",
+        orderIdLabel: "ID заказа:",
+        orderDetailsLabel: "Детали заказа:",
+        totalLabel: "Итого:",
+        deliveryLabel: "Доставка:",
+        lockerLabel: "Пакомат:",
+        contactSoon: "В ближайшее время мы с Вами свяжемся для уточнения деталей",
+        errorEmptyCart: "Корзина пуста",
+        errorDelivery: "Пожалуйста, выберите способ доставки",
+        errorLocker: "Пожалуйста, выберите пакомат",
+        errorSubmission: "Не удалось отправить заказ. Пожалуйста, попробуйте снова.",
+        contactsContent: [
+          "Latvia",
+          "+37126747899"
+        ],
+        detailsContent: [
+          "SIA GalaShop"
+        ],
+        paymentContent: [
+          "Наличными или кредитной картой в магазине",
+          "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)"
+        ],
+        products: [
+          
+          {name: "Peony", price: "20.00", img: "photo/11E.jpg", description: "Пеон"},
+          {name: "Lotos", price: "30.00", img: "photo/15E1.jpg", description: "Лотос"},
+           {name: "Rose", price: "25.00", img: "photo/200.jpg", description: "Роза"},
+          {name: "Wild Rose", price: "35.00", img: "photo/10.jpg", description: "Дикая роза"}
+        ]
+      }
+    };
+
+    function loadLockers(lang) {
+      const jsonFile = 'venipak-points.json';
+      const select = $('#locker-select');
+      select.empty();
+      select.append('<option value="">' + translations[lang].chooseLocker + '</option>');
+
+      $.getJSON(jsonFile, function(data) {
+        data.forEach(point => {
+          select.append('<option value="' + point.id + '">' + point.city + ', ' + point.address + ' (' + point.pickup_point + ')</option>');
+        });
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Ошибка загрузки пакоматов:', textStatus, errorThrown);
+        select.empty();
+        select.append('<option value="">' + translations[lang].errorLocker + '</option>');
+      });
+    }
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      $('#cart-title').text(t.cartTitle);
+      $('#delivery-title').text(t.deliveryTitle);
+      $('#order-title').text(t.orderTitle);
+      $('#cart-total-label').text(t.cartTotal);
+      $('#empty-cart').text(t.emptyCart);
+      $('#venipak-label').text(t.venipak);
+      $('#choose-locker-label').text(t.chooseLocker);
+      $('#pickup-label-container').show();
+      $('#pickup-label').text(t.pickup || "");
+      $('#name-label').contents().first()[0].textContent = t.name;
+      $('#email-label').contents().first()[0].textContent = t.email;
+      $('#phone-label').contents().first()[0].textContent = t.phone;
+      $('#comments-label').contents().first()[0].textContent = t.comments;
+      $('#order-button').text(t.orderButton);
+      $('.dropdown-btn[data-target="contacts"]').text(t.contacts);
+      $('.dropdown-btn[data-target="details"]').text(t.details);
+      $('.dropdown-btn[data-target="payment"]').text(t.payment);
+      $('#order-confirmation-title').text(t.orderConfirmationTitle);
+      $('#order-id-label').text(t.orderIdLabel);
+      $('#order-details-label').text(t.orderDetailsLabel);
+
+      $('#current-lang').text(lang.toUpperCase());
+
+      const $contactsContent = $('#contacts');
+      $contactsContent.empty();
+      t.contactsContent.forEach(text => {
+        $contactsContent.append(`<p>${text}</p>`);
+      });
+
+      const $detailsContent = $('#details');
+      $detailsContent.empty();
+      t.detailsContent.forEach(text => {
+        $detailsContent.append(`<p>${text}</p>`);
+      });
+
+      const $paymentContent = $('#payment');
+      $paymentContent.empty();
+      t.paymentContent.forEach(text => {
+        $paymentContent.append(`<p>${text}</p>`);
+      });
+
+      loadProducts(lang);
+      $('#product-modal .add-btn').text(t.addToCart);
+
+      loadLockers(lang);
+
+      $('html').attr('lang', lang);
+    }
+
+    function loadProducts(lang) {
+      const list = $('#products-list');
+      list.empty();
+      translations[lang].products.forEach(p => {
+        list.append(`
+          <div class="product-card simpleCart_shelfItem" data-description="${p.description}">
+            <img src="${p.img}" alt="${p.name}">
+            <div>
+              <h3 class="item_name">${p.name}</h3>
+              <div class="price"><span class="item_price">${p.price}</span> EUR</div>
+            </div>
+            <div style="margin-top:12px;">
+              <a href="javascript:;" class="add-btn item_add">${translations[lang].addToCart}</a>
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    $(function() {
+      setLanguage('lv');
+
+      $('.lang-selector').on('mouseenter', function() {
+        $('.lang-dropdown').show();
+      });
+
+      $('.lang-selector').on('mouseleave', function() {
+        $('.lang-dropdown').hide();
+      });
+
+      $('.lang-dropdown').on('click', '.lang-btn', function(e) {
+        e.preventDefault();
+        const lang = $(this).data('lang');
+        if (lang) {
+          setLanguage(lang);
+          $('.lang-dropdown').hide();
+        }
+      });
+
+      $('.hamburger').on('click', function() {
+        $(this).toggleClass('active');
+        $('.dropdown-menu').toggleClass('active');
+        $('.dropdown-content').removeClass('active');
+      });
+
+      $('.dropdown-btn').on('click', function() {
+        const target = $(this).data('target');
+        $('.dropdown-content').removeClass('active');
+        $(`#${target}`).toggleClass('active');
+        $('.dropdown-menu').addClass('active');
+        $('.hamburger').addClass('active');
+      });
+
+      $(document).on('click', function(e) {
+        if (!$(e.target).closest('.hamburger, .dropdown-menu').length) {
+          $('.hamburger').removeClass('active');
+          $('.dropdown-menu').removeClass('active');
+          $('.dropdown-content').removeClass('active');
+        }
+        if (!$(e.target).closest('.lang-selector').length) {
+          $('.lang-dropdown').hide();
+        }
+      });
+
+      simpleCart({
+        cartStyle: "table",
+        currency: "EUR",
+        cartColumns: [
+          { attr: "name", label: "Prece" },
+          {
+            label: "Daudzums",
+            view: function(item, column) {
+              return `
+                <div class="quantity-controls">
+                  <button class="decrement" data-id="${item.get('id')}">-</button>
+                  <input type="number" class="quantity-input" data-id="${item.get('id')}" value="${item.get('quantity')}" min="1">
+                  <button class="increment" data-id="${item.get('id')}">+</button>
+                </div>
+              `;
+            }
+          },
+          {
+            attr: "price",
+            label: "Cena",
+            view: function(item, column) {
+              return parseFloat(item.get('price')).toFixed(2);
+            }
+          },
+          { view: "remove", text: "Dzēst" }
+        ]
+      });
+
+      $('input[name="delivery"]').on('change', function() {
+        const deliveryType = $(this).val();
+        const select = $('#locker-select');
+        if (deliveryType === "Venipak pakomāts") {
+          $('#locker-field').removeClass('hidden');
+          select.prop('required', true);
+          const lang = $('#current-lang').text().toLowerCase();
+          loadLockers(lang);
+        } else {
+          $('#locker-field').addClass('hidden');
+          select.prop('required', false);
+        }
+        updateCartTotal();
+      });
+
+      function updateCartTotal() {
+        let itemsTotal = parseFloat(simpleCart.total()) || 0;
+        let deliveryCost = 0;
+        const lang = $('#current-lang').text().toLowerCase();
+        const t = translations[lang];
+        const deliveryType = $('input[name="delivery"]:checked').val();
+        if (deliveryType === "Venipak pakomāts") deliveryCost = 4;
+
+        $('.simpleCart_items .delivery-row').remove();
+        const $tbody = $('.simpleCart_items table tbody');
+        if ($tbody.length && deliveryCost > 0) {
+          $tbody.append('<tr class="delivery-row"><td>' + t.deliveryLabel + '</td><td>1</td><td>' + deliveryCost.toFixed(2) + '</td><td></td></tr>');
+        }
+        const totalWithDelivery = (itemsTotal + deliveryCost).toFixed(2);
+        $('.simpleCart_total').text(totalWithDelivery);
+      }
+
+      $(document).on('click', '.increment', function() {
+        const id = $(this).data('id');
+        const item = simpleCart.find(id);
+        if (item) {
+          item.quantity(item.get('quantity') + 1);
+          simpleCart.update();
+        }
+      });
+
+      $(document).on('click', '.decrement', function() {
+        const id = $(this).data('id');
+        const item = simpleCart.find(id);
+        if (item && item.get('quantity') > 1) {
+          item.quantity(item.get('quantity') - 1);
+          simpleCart.update();
+        }
+      });
+
+      $(document).on('change', '.quantity-input', function() {
+        const id = $(this).data('id');
+        const item = simpleCart.find(id);
+        const newQuantity = parseInt($(this).val()) || 1;
+        if (item && newQuantity >= 1) {
+          item.quantity(newQuantity);
+          simpleCart.update();
+        } else {
+          $(this).val(item.get('quantity'));
+        }
+      });
+
+      simpleCart.bind('update', updateCartTotal);
+
+      $('#orderForm').on('submit', function(e) {
+        e.preventDefault();
+        const lang = $('#current-lang').text().toLowerCase();
+        const t = translations[lang];
+
+        var items = simpleCart.items();
+        if (!items.length) {
+          alert(t.errorEmptyCart);
+          return false;
+        }
+        var deliveryType = $('input[name="delivery"]:checked').val();
+        if (!deliveryType) {
+          alert(t.errorDelivery);
+          return false;
+        }
+        if (deliveryType === "Venipak pakomāts" && $('#locker-select').val() === "") {
+          alert(t.errorLocker);
+          return false;
+        }
+        var email = $('input[name="email"]').val();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          alert(t.email + " некорректен");
+          return false;
+        }
+
+        var summaryArr = items.map(it => it.get('quantity') + ' × ' + it.get('name') + ' (' + parseFloat(it.get('price')).toFixed(2) + ' EUR)');
+        var itemsTotal = parseFloat(simpleCart.total()) || 0;
+        var deliveryCost = (deliveryType === "Venipak pakomāts") ? 4 : 0;
+        var totalWithDelivery = (itemsTotal + deliveryCost).toFixed(2);
+        var lockerAddr = $('#locker-select option:selected').text();
+        var orderId = generateSimpleOrderId();
+        var deliveryText = deliveryType === "Pašizņemšana Mārupē" ? t.pickupOption : deliveryType;
+        var cartTextForModal = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType === "Venipak pakomāts" ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n<span class="contact-soon">${t.contactSoon}</span>`;
+        var cartTextForEmail = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType === "Venipak pakomāts" ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n**${t.contactSoon}**`;
+        $('#cart_contents').val(cartTextForEmail);
+        $('#order_id').val(orderId);
+
+        $('#confirmation-order-id').text(orderId);
+        $('#confirmation-cart-details').html(cartTextForModal.replace(/\n/g, '<br>'));
+        $('#order-confirmation-modal').show();
+
+        $.ajax({
+          url: 'https://api.web3forms.com/submit',
+          method: 'POST',
+          data: $('#orderForm').serialize(),
+          success: function(response, textStatus, xhr) {
+            console.log('Успешный ответ:', {
+              status: xhr.status,
+              response: response,
+              responseText: xhr.responseText
+            });
+            simpleCart.empty();
+            updateCartTotal();
+          },
+          error: function(xhr, status, error) {
+            console.error('Ошибка AJAX:', {
+              status: xhr.status,
+              statusText: status,
+              error: error,
+              responseText: xhr.responseText || 'No response due to CORS'
+            });
+            console.log('Предполагаем успешную отправку, так как сервер обрабатывает POST-запрос');
+            simpleCart.empty();
+            updateCartTotal();
+          },
+          complete: function(xhr, status) {
+            if (status === 'error' && xhr.status === 0) {
+              console.log('CORS ошибка, но запрос отправлен, считаем успехом');
+              simpleCart.empty();
+              updateCartTotal();
+            } else if (xhr.status >= 400) {
+              let errorMessage = t.errorSubmission;
+              try {
+                const parsedError = JSON.parse(xhr.responseText || '{}');
+                if (parsedError.message) {
+                  errorMessage += ': ' + parsedError.message;
+                }
+              } catch (e) {
+                console.warn('Не удалось распарсить ошибку как JSON:', e);
+              }
+              alert(errorMessage);
+              $('#order-confirmation-modal').hide();
+            }
+          }
+        });
+      });
+
+      const modal = $('#product-modal');
+      const confirmationModal = $('#order-confirmation-modal');
+      const closeBtn = $('.close');
+
+      $('#products-list').on('click', '.product-card', function(e) {
+        if ($(e.target).closest('.add-btn').length) {
+          return;
+        }
+
+        const card = $(this);
+        modal.find('img').attr('src', card.find('img').attr('src'));
+        modal.find('h3').text(card.find('.item_name').text());
+        modal.find('.description').html(card.data('description'));
+        modal.find('.price').text(card.find('.item_price').text() + ' EUR');
+
+        modal.find('.add-btn').off('click').on('click', function() {
+          simpleCart.add({
+            name: card.find('.item_name').text(),
+            price: parseFloat(card.find('.item_price').text()),
+            quantity: 1
+          });
+          modal.hide();
+        });
+
+        modal.show();
+      });
+
+      closeBtn.on('click', function() {
+        modal.hide();
+        confirmationModal.hide();
+      });
+
+      $(window).on('click', function(e) {
+        if (e.target === modal[0]) {
+          modal.hide();
+        }
+        if (e.target === confirmationModal[0]) {
+          confirmationModal.hide();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
