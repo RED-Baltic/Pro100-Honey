@@ -58,7 +58,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 32px;
-      margin-bottom: 24px; /* Reduced from 48px to 24px to halve the distance */
+      margin-bottom: 24px;
       flex-wrap: wrap;
       position: relative;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -226,14 +226,14 @@
       color: var(--text-light);
     }
     .banner {
-      width: 100vw; /* Full viewport width */
+      width: 100vw;
       position: relative;
       left: 50%;
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
-      margin-bottom: 32px; /* Kept as is */
-      border-radius: 0; /* Remove radius for full-width effect */
+      margin-bottom: 32px;
+      border-radius: 0;
       overflow: hidden;
     }
 
@@ -241,7 +241,7 @@
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
-      object-fit: contain;
+      object-fit: cover; /* Changed from contain to cover */
       display: block;
     }
 
@@ -596,7 +596,7 @@
         padding-right: 12px;
       }
       .header-title {
-        font-size: 1.8rem; /* Reduced from 2.4rem to 1.2rem (halved) */
+        font-size: 1.2rem;
       }
       .header-left {
         position: absolute;
@@ -659,6 +659,7 @@
       .banner img {
         max-height: 250px;
         aspect-ratio: 16 / 9;
+        object-fit: cover;
       }
       .top-bar {
         font-size: 0.8rem;
@@ -1249,4 +1250,3 @@
   </script>
 </body>
 </html>
-
