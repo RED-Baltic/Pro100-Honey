@@ -226,15 +226,15 @@
       color: var(--text-light);
     }
  .banner {
-  width: 100%;
-  max-width: var(--container-width); /* Ограничивает ширину до 1280px */
+  width: 100%; /* Занимает всю ширину родительского контейнера */
   margin-bottom: 32px;
   border-radius: var(--radius);
   overflow: hidden;
 }
+
 .banner img {
-  width: 100%;
-  height: auto; /* Позволяет высоте подстраиваться под ширину, сохраняя пропорции */
+  width: 100%; /* Растягивается на всю ширину */
+  height: auto; /* Высота подстраивается, чтобы сохранить пропорции */
   aspect-ratio: 16 / 9; /* Сохраняет пропорции изображения */
   object-fit: contain; /* Изображение отображается полностью без обрезки */
   display: block;
@@ -1244,6 +1244,7 @@
 </body>
 
 </html>
+
 
 
 
