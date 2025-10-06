@@ -39,7 +39,7 @@
 
     .top-bar {
       background: var(--bg-dark);
-      color: var(--accent-gold);
+      color: var(--text-light);
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
       font-weight: 400;
@@ -157,26 +157,28 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       cursor: pointer;
-      padding: 10px;
+      padding: 6px; /* Copied from ideal code */
     }
     .hamburger span {
-      background: var(--accent-gold);
-      height: 3px;
-      margin: 3px 0;
+      background: #FFFFFF; /* Changed to white */
+      height: 4px; /* Copied from ideal code */
+      width: 100%; /* Full width */
+      margin: 4px 0; /* Copied from ideal code */
       border-radius: 1.5px;
       transition: all 0.3s ease;
+      transform-origin: center; /* Kept for consistency */
     }
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(7px, 7px);
+      transform: rotate(45deg) translate(8px, 8px); /* Copied from ideal code */
     }
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
     .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
+      transform: rotate(-45deg) translate(8px, -8px); /* Copied from ideal code */
     }
 
     .dropdown-menu {
@@ -619,17 +621,19 @@
       .hamburger {
         width: 30px;
         height: 30px;
-        padding: 6px;
+        padding: 5px; /* Copied from ideal code */
       }
       .hamburger span {
-        height: 3px;
-        margin: 2px 0;
+        height: 3px; /* Copied from ideal code */
+        margin: 3px 0; /* Copied from ideal code */
+        width: 100%; /* Full width */
+        background: #FFFFFF; /* White for mobile too */
       }
       .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
+        transform: rotate(45deg) translate(6px, 6px); /* Copied from ideal code */
       }
       .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
+        transform: rotate(-45deg) translate(6px, -6px); /* Copied from ideal code */
       }
       .simpleCart_items table { 
         font-size: 13px; 
