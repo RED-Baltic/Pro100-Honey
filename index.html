@@ -241,7 +241,7 @@
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
-      object-fit: cover; /* Changed from contain to cover */
+      object-fit: cover;
       display: block;
     }
 
@@ -652,9 +652,11 @@
         max-width: 220px; 
       }
       .modal img {
-        aspect-ratio: 2 / 3;
-        max-height: 150px;
-        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 3 / 4; /* Changed to vertical orientation */
+        height: auto;
+        object-fit: cover;
+        border-radius: var(--radius);
       }
       .banner img {
         max-height: 250px;
@@ -1250,5 +1252,3 @@
   </script>
 </body>
 </html>
-
-
