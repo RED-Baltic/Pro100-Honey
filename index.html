@@ -438,10 +438,12 @@
       font-size: 1rem; 
     }
 
-    #locker-field { 
+    #locker-field,
+    #omniva-locker-field { 
       margin-top: 10px;
     }
-    #locker-field select {
+    #locker-field select,
+    #omniva-locker-field select {
       width: 100%;
       padding: 10px;
       border-radius: var(--radius);
@@ -626,8 +628,10 @@
       position: relative;
     }
     #venipak-label,
+    #omniva-label,
     #pickup-label,
-    #choose-locker-label {
+    #choose-locker-label,
+    #omniva-choose-locker-label {
       color: var(--text-light);
     }
 
@@ -937,6 +941,14 @@
             <label id="choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
             <select id="locker-select" name="locker" required><option value="">Ielādē pakomātus...</option></select>
           </div>
+          <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px; margin-top:8px;">
+            <input type="radio" name="delivery" value="Omniva pakomāts" required>
+            <span id="omniva-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Omniva pakomāts (1–3 darba dienas, 4.00 EUR)</span>
+          </label>
+          <div id="omniva-locker-field" class="hidden">
+            <label id="omniva-choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
+            <select id="omniva-locker-select" name="omniva-locker" required><option value="">Ielādē pakomātus...</option></select>
+          </div>
           <label id="pickup-label-container" style="display:block; margin-top:8px; color:var(--text-light); font-weight:600;">
             <input type="radio" name="delivery" value="Pašizņemšana Mārupē">
             <span id="pickup-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
@@ -985,6 +997,7 @@
         emptyCart: "Iztīrīt grozu", 
         deliveryTitle: "Piegāde",
         venipak: "Venipak pakomāts (1–3 darba dienas, 4.00 EUR)", 
+        omniva: "Omniva pakomāts (1–3 darba dienas, 4.00 EUR)",
         pickup: "Pašizņemšana Jūrmalā (BEZMAKSAS)",
         pickupOption: "Pašizņemšana Mārupē",
         chooseLocker: "Izvēlieties pakomātu:", 
@@ -1015,6 +1028,7 @@
         ],
         detailsContent: [
           "Pakomāti Venipak pakomāts (1–3 darba dienas, 4.00 EUR)",
+          "Pakomāti Omniva pakomāts (1–3 darba dienas, 4.00 EUR)",
           "Piegāde ar kurjeru Rīgā un Jūrmalā (7.00 EUR)"
         ],
         paymentContent: [
@@ -1038,6 +1052,7 @@
         emptyCart: "Очистить корзину", 
         deliveryTitle: "Доставка",
         venipak: "Venipak (1–3 рабочих дня, 4.00 EUR)", 
+        omniva: "Omniva (1–3 рабочих дня, 4.00 EUR)",
         pickup: "Самовывоз в Юрмале (БЕСПЛАТНО)", 
         pickupOption: "Самовывоз в Марупе",
         chooseLocker: "Выберите пакомат:",
@@ -1068,6 +1083,7 @@
         ],
         detailsContent: [
           "Пакоматы Venipak (1–3 рабочих дня, 4.00 EUR)",
+          "Пакоматы Omniva (1–3 рабочих дня, 4.00 EUR)",
           "Доставка курьером по Риге и Юрмале (7.00 EUR)"
         ],
         paymentContent: [
@@ -1103,6 +1119,23 @@
       });
     }
 
+    function loadOmnivaLockers(lang) {
+      const jsonFile = 'omniva.json';
+      const select = $('#omniva-locker-select');
+      select.empty();
+      select.append('<option value="">' + translations[lang].chooseLocker + '</option>');
+
+      $.getJSON(jsonFile, function(data) {
+        data.forEach(point => {
+          select.append('<option value="' + point.id + '">' + point.city + ', ' + point.address + ' (' + point.pickup_point + ')</option>');
+        });
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Ошибка загрузки Omniva пакоматов:', textStatus, errorThrown);
+        select.empty();
+        select.append('<option value="">' + translations[lang].errorLocker + '</option>');
+      });
+    }
+
     function setLanguage(lang) {
       const t = translations[lang];
       $('#cart-title').text(t.cartTitle);
@@ -1111,7 +1144,9 @@
       $('#cart-total-label').text(t.cartTotal);
       $('#empty-cart').text(t.emptyCart);
       $('#venipak-label').text(t.venipak);
+      $('#omniva-label').text(t.omniva);
       $('#choose-locker-label').text(t.chooseLocker);
+      $('#omniva-choose-locker-label').text(t.chooseLocker);
       $('#pickup-label-container').show();
       $('#pickup-label').text(t.pickup || "");
       $('#name-label').contents().first()[0].textContent = t.name;
@@ -1150,6 +1185,7 @@
       $('#product-modal .add-btn').text(t.addToCart);
 
       loadLockers(lang);
+      loadOmnivaLockers(lang);
 
       $('html').attr('lang', lang);
     }
@@ -1253,15 +1289,22 @@
 
       $('input[name="delivery"]').on('change', function() {
         const deliveryType = $(this).val();
-        const select = $('#locker-select');
+        const venipakSelect = $('#locker-select');
+        const omnivaSelect = $('#omniva-locker-select');
+        $('#locker-field').addClass('hidden');
+        $('#omniva-locker-field').addClass('hidden');
+        venipakSelect.prop('required', false);
+        omnivaSelect.prop('required', false);
         if (deliveryType === "Venipak pakomāts") {
           $('#locker-field').removeClass('hidden');
-          select.prop('required', true);
+          venipakSelect.prop('required', true);
           const lang = $('#current-lang').text().toLowerCase();
           loadLockers(lang);
-        } else {
-          $('#locker-field').addClass('hidden');
-          select.prop('required', false);
+        } else if (deliveryType === "Omniva pakomāts") {
+          $('#omniva-locker-field').removeClass('hidden');
+          omnivaSelect.prop('required', true);
+          const lang = $('#current-lang').text().toLowerCase();
+          loadOmnivaLockers(lang);
         }
         updateCartTotal();
       });
@@ -1272,7 +1315,7 @@
         const lang = $('#current-lang').text().toLowerCase();
         const t = translations[lang];
         const deliveryType = $('input[name="delivery"]:checked').val();
-        if (deliveryType === "Venipak pakomāts") deliveryCost = 4;
+        if (deliveryType === "Venipak pakomāts" || deliveryType === "Omniva pakomāts") deliveryCost = 4;
 
         $('.simpleCart_items .delivery-row').remove();
         const $tbody = $('.simpleCart_items table tbody');
@@ -1339,6 +1382,10 @@
           alert(t.errorLocker);
           return false;
         }
+        if (deliveryType === "Omniva pakomāts" && $('#omniva-locker-select').val() === "") {
+          alert(t.errorLocker);
+          return false;
+        }
         var email = $('input[name="email"]').val();
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           alert(t.email + " некорректен");
@@ -1347,13 +1394,13 @@
 
         var summaryArr = items.map(it => it.get('quantity') + ' × ' + it.get('name') + ' (' + parseFloat(it.get('price')).toFixed(2) + ' EUR)');
         var itemsTotal = parseFloat(simpleCart.total()) || 0;
-        var deliveryCost = (deliveryType === "Venipak pakomāts") ? 4 : 0;
+        var deliveryCost = (deliveryType === "Venipak pakomāts" || deliveryType === "Omniva pakomāts") ? 4 : 0;
         var totalWithDelivery = (itemsTotal + deliveryCost).toFixed(2);
-        var lockerAddr = $('#locker-select option:selected').text();
+        var lockerAddr = deliveryType === "Venipak pakomāts" ? $('#locker-select option:selected').text() : (deliveryType === "Omniva pakomāts" ? $('#omniva-locker-select option:selected').text() : '');
         var orderId = generateSimpleOrderId();
         var deliveryText = deliveryType === "Pašizņemšana Mārupē" ? t.pickupOption : deliveryType;
-        var cartTextForModal = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType === "Venipak pakomāts" ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n<span class="contact-soon">${t.contactSoon}</span>`;
-        var cartTextForEmail = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType === "Venipak pakomāts" ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n**${t.contactSoon}**`;
+        var cartTextForModal = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType.includes("pakomāts") ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n<span class="contact-soon">${t.contactSoon}</span>`;
+        var cartTextForEmail = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType.includes("pakomāts") ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n**${t.contactSoon}**`;
         $('#cart_contents').val(cartTextForEmail);
         $('#order_id').val(orderId);
 
@@ -1457,4 +1504,3 @@
   </script>
 </body>
 </html>
-
