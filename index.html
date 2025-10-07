@@ -15,7 +15,7 @@
       --accent-gold-dark: #B58900;
       --text-light: #E8E8E8;
       --text-dark: #0F0F0F;
-      --beige-white: #F5F5DC; /* New warmer beige-white color */
+      --beige-white: #F5F5DC;
       --radius: 8px;
       --container-width: 1280px;
     }
@@ -100,7 +100,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 2.8rem;
       font-weight: 700;
-      color: var(--beige-white); /* Changed to beige-white */
+      color: var(--beige-white);
       margin: 0;
       text-align: center;
       letter-spacing: 1px;
@@ -175,7 +175,7 @@
       padding: 6px;
     }
     .hamburger span {
-      background: var(--beige-white); /* Changed to beige-white */
+      background: var(--beige-white);
       height: 4px;
       width: 100%;
       margin: 4px 0;
@@ -559,6 +559,44 @@
     }
     .modal .add-btn:active { transform: translateY(1px); }
 
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
+    .cart-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--beige-white);
+      transition: fill 0.3s ease;
+    }
+    .cart-icon:hover svg {
+      fill: var(--accent-gold);
+    }
+    .cart-icon .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent-gold);
+      color: var(--text-dark);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .cart-modal .modal-content {
+      max-width: 800px;
+      padding: 24px;
+    }
+
     #order-confirmation-modal .modal-content p {
       font-size: 14px;
       margin: 12px 0;
@@ -634,7 +672,7 @@
         height: 2px;
         margin: 2px 0;
         width: 100%;
-        background: var(--beige-white); /* Changed to beige-white */
+        background: var(--beige-white);
       }
       .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(4.5px, 4.5px);
@@ -687,6 +725,21 @@
         color: var(--text-light) !important;
         text-decoration: none;
       }
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+      }
+      .cart-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .cart-icon .cart-count {
+        width: 14px;
+        height: 14px;
+        font-size: 10px;
+        top: -6px;
+        right: -6px;
+      }
     }
   </style>
 </head>
@@ -724,6 +777,12 @@
             <button class="lang-btn" data-lang="ru">RU</button>
           </div>
         </div>
+        <div class="cart-icon" id="cart-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 21 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </div>
       </div>
     </header>
 
@@ -732,21 +791,34 @@
         <img src="photo/baner8.jpg" alt="Promotional Banner">
       </div>
       <div class="products-list" id="products-list"></div>
+    </main>
+  </div>
 
-      <section class="panel" style="margin-top:28px;">
-        <div class="section-title" id="cart-title">Grozs</div>
-        <div class="cart-items" style="margin-top:14px;"><div class="simpleCart_items"></div></div>
-        <div class="cart-total" style="margin-top:12px;">
-          <div class="label" id="cart-total-label">Kopā:</div>
-          <div class="value"><span class="simpleCart_total">0.00</span> EUR</div>
-        </div>
-        <div style="margin-top:14px;">
-          <a href="javascript:;" class="empty-cart-btn simpleCart_empty" id="empty-cart">Iztīrīt grozu</a>
-        </div>
-      </section>
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="" alt="">
+      <h3></h3>
+      <p class="description"></p>
+      <div class="price"></div>
+      <a href="javascript:;" class="add-btn">Pievienot grozam</a>
+    </div>
+  </div>
 
-      <section class="panel" style="margin-top:28px;">
-        <div class="section-title" id="delivery-title">Piegāde</div>
+  <div id="cart-modal" class="modal cart-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 class="section-title" id="cart-title">Grozs</h3>
+      <div class="cart-items" style="margin-top:14px;"><div class="simpleCart_items"></div></div>
+      <div class="cart-total" style="margin-top:12px;">
+        <div class="label" id="cart-total-label">Kopā:</div>
+        <div class="value"><span class="simpleCart_total">0.00</span> EUR</div>
+      </div>
+      <div style="margin-top:14px;">
+        <a href="javascript:;" class="empty-cart-btn simpleCart_empty" id="empty-cart">Iztīrīt grozu</a>
+      </div>
+      <div style="margin-top:28px;">
+        <h3 class="section-title" id="delivery-title">Piegāde</h3>
         <div style="margin-top:14px;">
           <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:8px;">
             <input type="radio" name="delivery" value="Venipak pakomāts" required>
@@ -761,10 +833,9 @@
             <span id="pickup-label" style="margin-left:8px; color:var(--muted); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
           </label>
         </div>
-      </section>
-
-      <section class="panel" style="margin-top:28px;">
-        <div class="section-title" id="order-title">Noformēt pasūtījumu</div>
+      </div>
+      <div style="margin-top:28px;">
+        <h3 class="section-title" id="order-title">Noformēt pasūtījumu</h3>
         <form class="order-form" id="orderForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="c49dd88b-948d-4903-9295-d9ab1c7b8afc">
           <input type="hidden" name="email_to" value="galasmail@inbox.lv">
@@ -776,18 +847,7 @@
           <label id="comments-label">Komentāri:<textarea name="message" rows="4"></textarea></label>
           <button type="submit" id="order-button">Pasūtīt</button>
         </form>
-      </section>
-    </main>
-  </div>
-
-  <div id="product-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <img src="" alt="">
-      <h3></h3>
-      <p class="description"></p>
-      <div class="price"></div>
-      <a href="javascript:;" class="add-btn">Pievienot grozam</a>
+      </div>
     </div>
   </div>
 
@@ -852,12 +912,12 @@
           "Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)"
         ],
         products: [
-           {name: "Svece", price: "4.00", img: "photo/svece.jpg", description: "Svece burciņā no bišu vaska ar medus un mājīguma aromātu. Augstums – 3,5 cm. Diametrs – 5 cm. Svars – 50 g."},
+          {name: "Svece", price: "4.00", img: "photo/svece.jpg", description: "Svece burciņā no bišu vaska ar medus un mājīguma aromātu. Augstums – 3,5 cm. Diametrs – 5 cm. Svars – 50 g."},
           {name: "Roku krēms", price: "8.00", img: "photo/krems.jpg", description: "Roku krēms ar medus ekstraktu. 98% dabīgs sastāvs. Tilpums – 50 ml."},
           {name: "Vaska salvetes pārtikas uzglabāšanai", price: "10.00", img: "photo/salfete.jpg", description: "Alternatīva pārtikas plēvei un konteineriem. Salvetes no 100% kokvilnas, piesūcinātas ar bišu vasku. No roku siltuma iegūst jebkuru formu."},
-           {name: "Nazālais inhalators", price: "7.00", img: "photo/inhalators.jpg", description: "Nazālais inhalators ar propolisu un piparmētru, eikalipta un citrona ēteriskajām eļļām. Palīdz pie aizlikta deguna, atvieglo elpošanu."},
+          {name: "Nazālais inhalators", price: "7.00", img: "photo/inhalators.jpg", description: "Nazālais inhalators ar propolisu un piparmētru, eikalipta un citrona ēteriskajām eļļām. Palīdz pie aizlikta deguna, atvieglo elpošanu."},
           {name: "Universāla ziede no bišu vaska ar propolisu", price: "9.00", img: "photo/ziede.jpg", description: "Sastāvs – vasks, augsts propolisa saturs un augu eļļas. Reģenerē ādu, veicina brūču un apdegumu dzīšanu, dezinficē, mīkstina ādu. Mazina iekaisumus un lobīšanos."},
-            {name: "Balzams", price: "6.00", img: "photo/balzams.jpg", description: "Sastāvā bišu vasks, propoliss, piparmētru, eikalipta un kanēļa ēteriskās eļļas. Iedarbība gan atvēsinoša, gan sildoša."},
+          {name: "Balzams", price: "6.00", img: "photo/balzams.jpg", description: "Sastāvā bišu vasks, propoliss, piparmētru, eikalipta un kanēļa ēteriskās eļļas. Iedarbība gan atvēsinoša, gan sildoša."},
           {name: "Lūpu vasks", price: "5.00", img: "photo/vaska.jpg", description: "Sastāv no bišu vaska, vīnogu kauliņu eļļas, kokosriekstu eļļas, propolisa un vaniļas ēteriskās eļļas. Kopj lūpas."}
         ]
       },
@@ -904,13 +964,13 @@
           "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)"
         ],
         products: [
-         {name: "Свеча ", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"},
+          {name: "Свеча", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"},
           {name: "Крем для рук", price: "8.00", img: "photo/krems.jpg", description: "Крем для рук с экстрактом мёда. 98% натуральный состав. Объём - 50 мл"},
           {name: "Восковые салфетки для хранения продуктов", price: "10.00", img: "photo/salfete.jpg", description: "Альтернативная замена пищевой пленки и контейнеров. Салфетки из 100% хлопка, пропитанные пчелиным воском. Под теплом рук принимают любую форму."},
-         {name: "Назальный ингалятор", price: "7.00", img: "photo/inhalators.jpg", description: "Назальный ингалятор с прополисом и эфирными маслами мяты, эвкалипта и лимона. Помогает при заложенности носа, облегчает дыхание ."},
-          {name: "Универсальная мазь из пчелиного воска с прополисом", price: "9.00", img: "photo/ziede.jpg", description: "Состав-воск,высокое содержание прополиса и растительные масла. Регенерирует кожу, способствует заживлению ран и ожогов, обеззараживает, смягчает кожу. Снимает воспаления и шелушения."},
-           {name: "Бальзам", price: "6.00", img: "photo/balzams.jpg", description: "В составе пчелиный воск, прополис, эфирные масла мяты, эвкалипта и корицы. Действие как охлаждающее, так и согревающее."},
-            {name: "Воск для губ", price: "5.00", img: "photo/vaska.jpg", description: "Состоит из пчелиного воска, мала виноградной косточки, кокосового масла, прополиса и эфирного масла ванили. Ухаживает за губами. "}
+          {name: "Назальный ингалятор", price: "7.00", img: "photo/inhalators.jpg", description: "Назальный ингалятор с прополисом и эфирными маслами мяты, эвкалипта и лимона. Помогает при заложенности носа, облегчает дыхание."},
+          {name: "Универсальная мазь из пчелиного воска с прополисом", price: "9.00", img: "photo/ziede.jpg", description: "Состав-воск, высокое содержание прополиса и растительные масла. Регенерирует кожу, способствует заживлению ран и ожогов, обеззараживает, смягчает кожу. Снимает воспаления и шелушения."},
+          {name: "Бальзам", price: "6.00", img: "photo/balzams.jpg", description: "В составе пчелиный воск, прополис, эфирные масла мяты, эвкалипта и корицы. Действие как охлаждающее, так и согревающее."},
+          {name: "Воск для губ", price: "5.00", img: "photo/vaska.jpg", description: "Состоит из пчелиного воска, масла виноградной косточки, кокосового масла, прополиса и эфирного масла ванили. Ухаживает за губами."}
         ]
       }
     };
@@ -1075,6 +1135,11 @@
         ]
       });
 
+      function updateCartCount() {
+        const itemCount = simpleCart.items().reduce((sum, item) => sum + item.get('quantity'), 0);
+        $('#cart-count').text(itemCount);
+      }
+
       $('input[name="delivery"]').on('change', function() {
         const deliveryType = $(this).val();
         const select = $('#locker-select');
@@ -1105,6 +1170,7 @@
         }
         const totalWithDelivery = (itemsTotal + deliveryCost).toFixed(2);
         $('.simpleCart_total').text(totalWithDelivery);
+        updateCartCount();
       }
 
       $(document).on('click', '.increment', function() {
@@ -1138,6 +1204,10 @@
       });
 
       simpleCart.bind('update', updateCartTotal);
+
+      $('#cart-icon').on('click', function() {
+        $('#cart-modal').show();
+      });
 
       $('#orderForm').on('submit', function(e) {
         e.preventDefault();
@@ -1178,6 +1248,7 @@
 
         $('#confirmation-order-id').text(orderId);
         $('#confirmation-cart-details').html(cartTextForModal.replace(/\n/g, '<br>'));
+        $('#cart-modal').hide();
         $('#order-confirmation-modal').show();
 
         $.ajax({
@@ -1227,6 +1298,7 @@
       });
 
       const modal = $('#product-modal');
+      const cartModal = $('#cart-modal');
       const confirmationModal = $('#order-confirmation-modal');
       const closeBtn = $('.close');
 
@@ -1255,12 +1327,16 @@
 
       closeBtn.on('click', function() {
         modal.hide();
+        cartModal.hide();
         confirmationModal.hide();
       });
 
       $(window).on('click', function(e) {
         if (e.target === modal[0]) {
           modal.hide();
+        }
+        if (e.target === cartModal[0]) {
+          cartModal.hide();
         }
         if (e.target === confirmationModal[0]) {
           confirmationModal.hide();
