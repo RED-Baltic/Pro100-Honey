@@ -215,7 +215,8 @@
       border: none;
       color: var(--text-light);
       font-family: 'Lato', sans-serif;
-      font-size: 14px;
+      font-size: 16px; /* Increased font size */
+      font-weight: 700; /* Made bold */
       text-align: left;
       cursor: pointer;
       transition: background 0.3s ease, color 0.3s ease;
@@ -732,6 +733,10 @@
         width: 90%;
         max-width: 280px;
       }
+      .dropdown-menu button {
+        font-size: 14px; /* Increased font size for mobile */
+        font-weight: 700; /* Made bold */
+      }
       .lang-selector .lang-btn { 
         padding: 6px 10px; 
         font-size: 12px;
@@ -791,7 +796,7 @@
         right: -8px;
       }
       .modal {
-        padding-top: 10px; /* Further reduced top padding */
+        padding-top: 10px;
       }
       .cart-modal .modal-content {
         width: 95%;
