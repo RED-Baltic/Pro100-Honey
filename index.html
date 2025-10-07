@@ -429,7 +429,7 @@
       font-size: 1rem;
     }
     .cart-total .label { 
-      color: var(--text-light); /* Changed to white */
+      color: var(--text-light);
       font-weight: 600; 
     }
     .cart-total .value { 
@@ -438,11 +438,11 @@
     }
 
     #locker-field { 
-      margin-top: 10px; /* Reduced margin */
+      margin-top: 10px;
     }
     #locker-field select {
       width: 100%;
-      padding: 10px; /* Reduced padding */
+      padding: 10px;
       border-radius: var(--radius);
       border: 1px solid var(--beige-white);
       background: var(--card-dark);
@@ -452,16 +452,16 @@
 
     .order-form label { 
       display: block; 
-      color: var(--text-light); /* Changed to white */
+      color: var(--text-light);
       font-weight: 600; 
-      margin-bottom: 6px; /* Reduced margin */
+      margin-bottom: 6px;
     }
     .order-form input[type="text"],
     .order-form input[type="email"],
     .order-form input[type="tel"],
     .order-form textarea {
       width: 100%;
-      padding: 10px; /* Reduced padding */
+      padding: 10px;
       border-radius: var(--radius);
       border: 1px solid var(--beige-white);
       background: var(--card-dark);
@@ -470,13 +470,13 @@
       box-sizing: border-box;
     }
     .order-form textarea { 
-      min-height: 60px; /* Reduced height */
+      min-height: 60px;
       resize: vertical; 
     }
     .order-form button {
-      display: block; /* Changed to block for full width */
-      width: 100%; /* Full width */
-      padding: 10px 20px; /* Adjusted padding */
+      display: block;
+      width: 100%;
+      padding: 10px 20px;
       background: var(--beige-white);
       border: 1px solid var(--beige-white);
       color: var(--text-dark);
@@ -620,14 +620,14 @@
     }
     .cart-modal .modal-content {
       max-width: 900px;
-      padding: 16px; /* Reduced padding */
+      padding: 16px;
       width: 90%;
       position: relative;
     }
     #venipak-label,
     #pickup-label,
     #choose-locker-label {
-      color: var(--text-light); /* Changed to white */
+      color: var(--text-light);
     }
 
     #order-confirmation-modal .modal-content p {
@@ -790,23 +790,26 @@
         top: -8px;
         right: -8px;
       }
+      .modal {
+        padding-top: 10px; /* Further reduced top padding */
+      }
       .cart-modal .modal-content {
         width: 95%;
         max-width: 100%;
-        padding: 12px; /* Further reduced padding */
-        margin: 10px auto;
-        max-height: 80vh; /* Reduced height for better fit */
+        padding: 12px;
+        margin: 2% auto;
+        max-height: 80vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
       }
       .cart-modal .section-title {
-        font-size: 1.1rem; /* Slightly smaller title */
-        margin-bottom: 10px; /* Reduced margin */
+        font-size: 1.1rem;
+        margin-bottom: 10px;
       }
       .cart-modal .cart-items {
         font-size: 12px;
-        margin-top: 8px; /* Reduced margin */
+        margin-top: 8px;
       }
       .cart-modal .quantity-controls button {
         width: 28px;
@@ -819,18 +822,18 @@
       }
       .cart-modal .cart-total {
         font-size: 0.9rem;
-        margin-top: 8px; /* Reduced margin */
+        margin-top: 8px;
       }
       .cart-modal .empty-cart-btn {
         padding: 6px 10px;
         font-size: 12px;
-        margin-top: 8px; /* Reduced margin */
+        margin-top: 8px;
       }
       .cart-modal .order-form input,
       .cart-modal .order-form textarea,
       .cart-modal .order-form select {
         font-size: 12px;
-        padding: 8px; /* Further reduced padding */
+        padding: 8px;
       }
       .cart-modal .order-form button {
         padding: 10px 20px;
@@ -840,7 +843,7 @@
         bottom: 0;
         background: var(--beige-white);
         z-index: 10;
-        margin-top: 12px; /* Reduced margin */
+        margin-top: 12px;
       }
     }
   </style>
