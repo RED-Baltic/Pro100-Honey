@@ -429,7 +429,7 @@
       font-size: 1rem;
     }
     .cart-total .label { 
-      color: var(--muted); 
+      color: var(--text-light); /* Changed to white */
       font-weight: 600; 
     }
     .cart-total .value { 
@@ -438,11 +438,11 @@
     }
 
     #locker-field { 
-      margin-top: 16px; 
+      margin-top: 10px; /* Reduced margin */
     }
     #locker-field select {
       width: 100%;
-      padding: 12px;
+      padding: 10px; /* Reduced padding */
       border-radius: var(--radius);
       border: 1px solid var(--beige-white);
       background: var(--card-dark);
@@ -452,16 +452,16 @@
 
     .order-form label { 
       display: block; 
-      color: var(--muted); 
+      color: var(--text-light); /* Changed to white */
       font-weight: 600; 
-      margin-bottom: 8px; 
+      margin-bottom: 6px; /* Reduced margin */
     }
     .order-form input[type="text"],
     .order-form input[type="email"],
     .order-form input[type="tel"],
     .order-form textarea {
       width: 100%;
-      padding: 12px;
+      padding: 10px; /* Reduced padding */
       border-radius: var(--radius);
       border: 1px solid var(--beige-white);
       background: var(--card-dark);
@@ -470,12 +470,13 @@
       box-sizing: border-box;
     }
     .order-form textarea { 
-      min-height: 80px; 
+      min-height: 60px; /* Reduced height */
       resize: vertical; 
     }
     .order-form button {
-      display: inline-block;
-      padding: 12px 24px;
+      display: block; /* Changed to block for full width */
+      width: 100%; /* Full width */
+      padding: 10px 20px; /* Adjusted padding */
       background: var(--beige-white);
       border: 1px solid var(--beige-white);
       color: var(--text-dark);
@@ -619,9 +620,14 @@
     }
     .cart-modal .modal-content {
       max-width: 900px;
-      padding: 24px;
+      padding: 16px; /* Reduced padding */
       width: 90%;
       position: relative;
+    }
+    #venipak-label,
+    #pickup-label,
+    #choose-locker-label {
+      color: var(--text-light); /* Changed to white */
     }
 
     #order-confirmation-modal .modal-content p {
@@ -787,18 +793,20 @@
       .cart-modal .modal-content {
         width: 95%;
         max-width: 100%;
-        padding: 16px;
+        padding: 12px; /* Further reduced padding */
         margin: 10px auto;
-        max-height: 85vh; /* Reduced height to fit screen better */
+        max-height: 80vh; /* Reduced height for better fit */
         overflow-y: auto;
         display: flex;
         flex-direction: column;
       }
       .cart-modal .section-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem; /* Slightly smaller title */
+        margin-bottom: 10px; /* Reduced margin */
       }
       .cart-modal .cart-items {
         font-size: 12px;
+        margin-top: 8px; /* Reduced margin */
       }
       .cart-modal .quantity-controls button {
         width: 28px;
@@ -811,26 +819,28 @@
       }
       .cart-modal .cart-total {
         font-size: 0.9rem;
+        margin-top: 8px; /* Reduced margin */
       }
       .cart-modal .empty-cart-btn {
         padding: 6px 10px;
         font-size: 12px;
+        margin-top: 8px; /* Reduced margin */
       }
       .cart-modal .order-form input,
       .cart-modal .order-form textarea,
       .cart-modal .order-form select {
         font-size: 12px;
-        padding: 10px;
+        padding: 8px; /* Further reduced padding */
       }
       .cart-modal .order-form button {
         padding: 10px 20px;
         font-size: 12px;
-        width: 100%; /* Full width for easier clicking */
-        position: sticky; /* Make button stick to bottom */
+        width: 100%;
+        position: sticky;
         bottom: 0;
         background: var(--beige-white);
-        z-index: 10; /* Ensure button is above other content */
-        margin-top: 16px; /* Add spacing above button */
+        z-index: 10;
+        margin-top: 12px; /* Reduced margin */
       }
     }
   </style>
@@ -900,32 +910,32 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h3 class="section-title" id="cart-title">Grozs</h3>
-      <div class="cart-items" style="margin-top:14px;"><div class="simpleCart_items"></div></div>
-      <div class="cart-total" style="margin-top:12px;">
+      <div class="cart-items" style="margin-top:8px;"><div class="simpleCart_items"></div></div>
+      <div class="cart-total" style="margin-top:8px;">
         <div class="label" id="cart-total-label">Kopā:</div>
         <div class="value"><span class="simpleCart_total">0.00</span> EUR</div>
       </div>
-      <div style="margin-top:14px;">
+      <div style="margin-top:8px;">
         <a href="javascript:;" class="empty-cart-btn simpleCart_empty" id="empty-cart">Iztīrīt grozu</a>
       </div>
-      <div style="margin-top:28px;">
+      <div style="margin-top:16px;">
         <h3 class="section-title" id="delivery-title">Piegāde</h3>
-        <div style="margin-top:14px;">
-          <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:8px;">
+        <div style="margin-top:8px;">
+          <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px;">
             <input type="radio" name="delivery" value="Venipak pakomāts" required>
-            <span id="venipak-label" style="margin-left:8px; color:var(--muted); font-weight:600;">Venipak pakomāts (1–3 darba dienas, 4.00 EUR)</span>
+            <span id="venipak-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Venipak pakomāts (1–3 darba dienas, 4.00 EUR)</span>
           </label>
           <div id="locker-field" class="hidden">
-            <label id="choose-locker-label" style="display:block; color:var(--muted); margin-bottom:8px;">Izvēlieties pakomātu:</label>
+            <label id="choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
             <select id="locker-select" name="locker" required><option value="">Ielādē pakomātus...</option></select>
           </div>
-          <label id="pickup-label-container" style="display:block; margin-top:12px; color:var(--text-light); font-weight:600;">
+          <label id="pickup-label-container" style="display:block; margin-top:8px; color:var(--text-light); font-weight:600;">
             <input type="radio" name="delivery" value="Pašizņemšana Mārupē">
-            <span id="pickup-label" style="margin-left:8px; color:var(--muted); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
+            <span id="pickup-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
           </label>
         </div>
       </div>
-      <div style="margin-top:28px;">
+      <div style="margin-top:16px;">
         <h3 class="section-title" id="order-title">Noformēt pasūtījumu</h3>
         <form class="order-form" id="orderForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="c49dd88b-948d-4903-9295-d9ab1c7b8afc">
