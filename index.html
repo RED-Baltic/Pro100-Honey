@@ -243,13 +243,14 @@
       margin: 0 auto 32px;
       border-radius: 0;
       overflow: hidden;
+      box-sizing: border-box; /* Ensure padding/margins don't affect dimensions */
     }
 
     .banner img {
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
+      aspect-ratio: 750 / 238; /* Matches the banner image */
+      object-fit: contain; /* Prevents stretching, shows full image */
       display: block;
       filter: brightness(0.9);
     }
@@ -710,10 +711,20 @@
         object-fit: cover;
         border-radius: var(--radius);
       }
+      .banner {
+        max-width: 100%; /* Ensure banner fits within viewport */
+        margin: 0 auto 16px; /* Reduced margin for mobile */
+        overflow: hidden;
+        box-sizing: border-box;
+      }
       .banner img {
-        max-height: 250px;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
+        width: 100%;
+        max-width: 100%; /* Prevent overflow */
+        height: auto;
+        aspect-ratio: 750 / 238; /* Matches the banner image */
+        object-fit: contain; /* Prevent stretching, show full image */
+        display: block;
+        margin: 0 auto; /* Center the image */
       }
       .top-bar {
         font-size: 0.8rem;
@@ -1346,4 +1357,3 @@
   </script>
 </body>
 </html>
-
