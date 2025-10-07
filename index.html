@@ -174,7 +174,7 @@
       padding: 6px;
     }
     .hamburger span {
-      background: #FFFFFF; /* Changed to white */
+      background: #FFFFFF;
       height: 4px;
       width: 100%;
       margin: 4px 0;
@@ -590,17 +590,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 48px; /* Increased size */
-      height: 48px; /* Increased size */
+      width: 48px;
+      height: 48px;
     }
     .cart-icon svg {
-      width: 32px; /* Increased SVG size */
-      height: 32px; /* Increased SVG size */
-      fill: #FFFFFF; /* Changed to white */
+      width: 32px;
+      height: 32px;
+      fill: #FFFFFF;
       transition: fill 0.3s ease;
     }
     .cart-icon:hover svg {
-      fill: #FFFFFF; /* Ensure remains white on hover */
+      fill: #FFFFFF;
     }
     .cart-icon .cart-count {
       position: absolute;
@@ -609,8 +609,8 @@
       background: var(--beige-white);
       color: var(--text-dark);
       border-radius: 50%;
-      width: 20px; /* Slightly larger for visibility */
-      height: 20px; /* Slightly larger for visibility */
+      width: 20px;
+      height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -618,9 +618,10 @@
       font-weight: 600;
     }
     .cart-modal .modal-content {
-      max-width: 900px; /* Increased max-width for cart modal */
+      max-width: 900px;
       padding: 24px;
-      width: 90%; /* Ensure it takes more space on mobile */
+      width: 90%;
+      position: relative;
     }
 
     #order-confirmation-modal .modal-content p {
@@ -649,7 +650,7 @@
         max-width: 320px; 
       }
       .cart-modal .modal-content {
-        max-width: 80%; /* Adjusted for better mobile fit */
+        max-width: 80%;
         padding: 16px;
       }
     }
@@ -697,15 +698,15 @@
         gap: 12px;
       }
       .hamburger {
-        width: 28px; /* Adjusted for mobile */
-        height: 28px; /* Adjusted for mobile */
+        width: 28px;
+        height: 28px;
         padding: 4px;
       }
       .hamburger span {
         height: 2px;
         margin: 2px 0;
         width: 100%;
-        background: #FFFFFF; /* White for mobile */
+        background: #FFFFFF;
       }
       .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(4.5px, 4.5px);
@@ -714,26 +715,26 @@
         transform: rotate(-45deg) translate(4.5px, -4.5px);
       }
       .simpleCart_items table { 
-        font-size: 12px; /* Smaller font for mobile */
+        font-size: 12px;
       }
       .simpleCart_items .simpleCart_remove { 
-        padding: 6px 8px; /* Adjusted padding */
-        font-size: 12px; /* Smaller font */
+        padding: 6px 8px;
+        font-size: 12px;
       }
       .dropdown-menu { 
         left: 12px; 
-        width: 90%; /* Wider dropdown for mobile */
+        width: 90%;
         max-width: 280px;
       }
       .lang-selector .lang-btn { 
         padding: 6px 10px; 
-        font-size: 12px; /* Smaller font for mobile */
+        font-size: 12px;
       }
       .lang-dropdown { 
         min-width: 100px; 
       }
       .phone-number { 
-        font-size: 12px; /* Smaller font for mobile */
+        font-size: 12px;
       }
       .modal img {
         max-width: 100%;
@@ -768,60 +769,68 @@
         text-decoration: none;
       }
       .cart-icon {
-        width: 36px; /* Slightly larger for mobile */
-        height: 36px; /* Slightly larger for mobile */
+        width: 36px;
+        height: 36px;
       }
       .cart-icon svg {
-        width: 24px; /* Adjusted SVG size for mobile */
-        height: 24px; /* Adjusted SVG size for mobile */
-        fill: #FFFFFF; /* White for mobile */
+        width: 24px;
+        height: 24px;
+        fill: #FFFFFF;
       }
       .cart-icon .cart-count {
-        width: 16px; /* Adjusted for mobile */
-        height: 16px; /* Adjusted for mobile */
+        width: 16px;
+        height: 16px;
         font-size: 10px;
         top: -8px;
         right: -8px;
       }
       .cart-modal .modal-content {
-        width: 95%; /* Full width for mobile */
-        max-width: 100%; /* Ensure it fits screen */
-        padding: 16px; /* Reduced padding for mobile */
-        margin: 10px auto; /* Adjusted margin */
-        max-height: 90vh; /* Limit height to avoid overflow */
-        overflow-y: auto; /* Scrollable content */
+        width: 95%;
+        max-width: 100%;
+        padding: 16px;
+        margin: 10px auto;
+        max-height: 85vh; /* Reduced height to fit screen better */
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
       }
       .cart-modal .section-title {
-        font-size: 1.2rem; /* Smaller title for mobile */
+        font-size: 1.2rem;
       }
       .cart-modal .cart-items {
-        font-size: 12px; /* Smaller text for mobile */
+        font-size: 12px;
       }
       .cart-modal .quantity-controls button {
-        width: 28px; /* Smaller buttons for mobile */
+        width: 28px;
         height: 28px;
         font-size: 14px;
       }
       .cart-modal .quantity-controls input {
-        width: 36px; /* Adjusted input size */
+        width: 36px;
         font-size: 12px;
       }
       .cart-modal .cart-total {
-        font-size: 0.9rem; /* Smaller font for mobile */
+        font-size: 0.9rem;
       }
       .cart-modal .empty-cart-btn {
-        padding: 6px 10px; /* Adjusted padding */
-        font-size: 12px; /* Smaller font */
+        padding: 6px 10px;
+        font-size: 12px;
       }
       .cart-modal .order-form input,
       .cart-modal .order-form textarea,
       .cart-modal .order-form select {
-        font-size: 12px; /* Smaller font for inputs */
-        padding: 10px; /* Adjusted padding */
+        font-size: 12px;
+        padding: 10px;
       }
       .cart-modal .order-form button {
-        padding: 10px 20px; /* Adjusted button size */
-        font-size: 12px; /* Smaller font */
+        padding: 10px 20px;
+        font-size: 12px;
+        width: 100%; /* Full width for easier clicking */
+        position: sticky; /* Make button stick to bottom */
+        bottom: 0;
+        background: var(--beige-white);
+        z-index: 10; /* Ensure button is above other content */
+        margin-top: 16px; /* Add spacing above button */
       }
     }
   </style>
@@ -1428,4 +1437,3 @@
   </script>
 </body>
 </html>
-
