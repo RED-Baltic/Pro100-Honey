@@ -5,917 +5,934 @@
   <title>RED — Veikals / Grozs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Playfair+Display:wght@400;600;700;800&family=Vladimir+Script&display=swap" rel="stylesheet">
+  <script src="https://www.paypal.com/sdk/js?client-id=AZ6a4Z6z2mH6zV0z0k3z3Q1zX1zY1zZ1zZ1zZ1zZ1zZ1zZ1zZ1zZ1zZ1zZ1zZ1&currency=EUR"></script>
   <style>
-    :root {
-      --bg-dark: #1A1A1A;
-      --card-dark: #2A2A2A;
-      --card-light: #3C3C3C;
-      --muted: #6B6B6B;
-      --accent-gold: #D4A017;
-      --accent-gold-dark: #B58900;
-      --text-light: #E8E8E8;
-      --text-dark: #0F0F0F;
-      --beige-white: #DAA24E;
-      --beige-dark: #E0D4B8;
-      --radius: 8px;
-      --container-width: 1280px;
-    }
+:root {
+  --bg-dark: #1A1A1A;
+  --card-dark: #2A2A2A;
+  --card-light: #3C3C3C;
+  --muted: #6B6B6B;
+  --accent-gold: #D4A017;
+  --accent-gold-dark: #B58900;
+  --text-light: #E8E8E8;
+  --text-dark: #0F0F0F;
+  --beige-white: #DAA24E;
+  --beige-dark: #E0D4B8;
+  --radius: 8px;
+  --container-width: 1280px;
+}
 
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: 'Lato', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-light);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      display: flex;
-      justify-content: center;
-      padding: 0 0 60px;
-    }
-    .wrap { 
-      width: 100%; 
-      max-width: var(--container-width); 
-      margin: 0 auto;
-    }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 60px;
+}
+.wrap { 
+  width: 100%; 
+  max-width: var(--container-width); 
+  margin: 0 auto;
+}
 
-    .top-bar {
-      background: var(--bg-dark);
-      color: var(--text-light);
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      padding: 6px 20px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      max-width: var(--container-width);
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .top-bar span {
-      color: var(--text-light);
-      font-size: 1.2rem;
-    }
-    .top-bar a {
-      color: var(--text-light);
-      font-size: 1.2rem;
-      text-decoration: none;
-    }
+.top-bar {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 6px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-bar span {
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+.top-bar a {
+  color: var(--text-light);
+  font-size: 1.2rem;
+  text-decoration: none;
+}
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      position: relative;
-      padding-bottom: 16px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      position: relative;
-    }
-    .header-center {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .header-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--beige-white);
-      margin: 0;
-      text-align: center;
-      letter-spacing: 1px;
-    }
-    .lang-selector {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .lang-selector .lang-btn {
-      padding: 8px 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--beige-white);
-      background: transparent;
-      color: var(--text-light);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-      white-space: nowrap;
-    }
-    .lang-selector .lang-btn:hover {
-      background: var(--beige-white);
-      color: var(--text-dark);
-    }
-    .lang-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: var(--card-dark);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      min-width: 120px;
-      z-index: 100;
-      padding: 8px 0;
-    }
-    .lang-selector:hover .lang-dropdown {
-      display: block;
-    }
-    .lang-dropdown button {
-      display: block;
-      width: 100%;
-      padding: 8px 20px;
-      background: var(--card-dark);
-      border: none;
-      color: var(--text-light);
-      font-size: 14px;
-      text-align: left;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .lang-dropdown button:hover {
-      background: var(--card-light);
-      color: var(--beige-white);
-    }
-    .phone-number {
-      color: var(--text-light);
-      font-size: 14px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  position: relative;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+.header-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--beige-white);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.lang-selector {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.lang-selector .lang-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--beige-white);
+  background: transparent;
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+.lang-selector .lang-btn:hover {
+  background: var(--beige-white);
+  color: var(--text-dark);
+}
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--card-dark);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 120px;
+  z-index: 100;
+  padding: 8px 0;
+}
+.lang-selector:hover .lang-dropdown {
+  display: block;
+}
+.lang-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 8px 20px;
+  background: var(--card-dark);
+  border: none;
+  color: var(--text-light);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.lang-dropdown button:hover {
+  background: var(--card-light);
+  color: var(--beige-white);
+}
+.phone-number {
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      padding: 6px;
-    }
-    .hamburger span {
-      background: #FFFFFF;
-      height: 4px;
-      width: 100%;
-      margin: 4px 0;
-      border-radius: 1.5px;
-      transition: all 0.3s ease;
-      transform-origin: center;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(8px, -8px);
-    }
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  background: #FFFFFF;
+  height: 4px;
+  width: 100%;
+  margin: 4px 0;
+  border-radius: 1.5px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
 
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--card-dark);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      min-width: 240px;
-      z-index: 100;
-      padding: 8px 0;
-    }
-    .dropdown-menu.active {
-      display: block;
-    }
-    .dropdown-menu button {
-      display: block;
-      width: 100%;
-      padding: 12px 20px;
-      background: none;
-      border: none;
-      color: var(--text-light);
-      font-family: 'Lato', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      text-align: left;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .dropdown-menu button:hover {
-      background: var(--card-light);
-      color: var(--beige-white);
-    }
-    .dropdown-content {
-      display: none;
-      padding: 20px;
-      border-top: 1px solid var(--beige-white);
-    }
-    .dropdown-content.active {
-      display: block;
-    }
-    .dropdown-content p {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: var(--text-light);
-    }
-    .banner {
-      max-width: var(--container-width);
-      margin: 0 auto 32px;
-      border-radius: 0;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--card-dark);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 240px;
+  z-index: 100;
+  padding: 8px 0;
+}
+.dropdown-menu.active {
+  display: block;
+}
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.dropdown-menu button:hover {
+  background: var(--card-light);
+  color: var(--beige-white);
+}
+.dropdown-content {
+  display: none;
+  padding: 20px;
+  border-top: 1px solid var(--beige-white);
+}
+.dropdown-content.active {
+  display: block;
+}
+.dropdown-content p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+.banner {
+  max-width: var(--container-width);
+  margin: 0 auto 32px;
+  border-radius: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
 
-    .banner img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 750 / 238;
-      object-fit: contain;
-      display: block;
-      filter: brightness(0.9);
-    }
+.banner img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 750 / 238;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0.9);
+}
 
-    .grid { 
-      display: grid; 
-      grid-template-columns: 1fr; 
-      gap: 48px; 
-      align-items: start; 
-    }
+.grid { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 48px; 
+  align-items: start; 
+}
 
-    .products-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .product-card {
-      background: var(--card-dark);
-      color: var(--text-light);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      min-height: 380px;
-      cursor: pointer;
-      position: relative;
-    }
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      background: var(--card-light);
-    }
-    .product-card img {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      border-radius: var(--radius);
-      margin: 0;
-      padding: 0;
-      background: var(--card-dark);
-    }
-    .product-card h3 {
-      margin: 8px 0;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-align: center;
-      letter-spacing: 0.3px;
-      color: var(--beige-white);
-    }
-    .product-card .price {
-      font-family: 'Lato', sans-serif;
-      font-weight: 600;
-      color: var(--text-light);
-      font-size: 1rem;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .product-card .add-btn {
-      display: block;
-      width: 100%;
-      padding: 12px 0;
-      background: transparent;
-      border: 1px solid var(--beige-white);
-      color: var(--beige-white);
-      border-radius: var(--radius);
-      font-family: 'Lato', sans-serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .product-card .add-btn:hover {
-      background: var(--beige-white);
-      color: var(--text-dark);
-    }
-    .product-card .add-btn:active { 
-      transform: translateY(1px); 
-    }
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.product-card {
+  background: var(--card-dark);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  min-height: 380px;
+  cursor: pointer;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background: var(--card-light);
+}
+.product-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin: 0;
+  padding: 0;
+  background: var(--card-dark);
+}
+.product-card h3 {
+  margin: 8px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.3px;
+  color: var(--beige-white);
+}
+.product-card .price {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.product-card .add-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  background: transparent;
+  border: 1px solid var(--beige-white);
+  color: var(--beige-white);
+  border-radius: var(--radius);
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.product-card .add-btn:hover {
+  background: var(--beige-white);
+  color: var(--text-dark);
+}
+.product-card .add-btn:active { 
+  transform: translateY(1px); 
+}
 
-    .panel {
-      background: var(--card-dark);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      color: var(--text-light);
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--beige-white);
-      margin: 0 0 16px 0;
-    }
+.panel {
+  background: var(--card-dark);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: var(--text-light);
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--beige-white);
+  margin: 0 0 16px 0;
+}
 
-    .simpleCart_items table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 16px;
-    }
-    .simpleCart_items th,
-    .simpleCart_items td {
-      padding: 12px;
-      border-bottom: 1px solid var(--beige-white);
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-light);
-    }
-    .simpleCart_items th { 
-      font-weight: 700; 
-      color: var(--beige-white); 
-    }
+.simpleCart_items table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+.simpleCart_items th,
+.simpleCart_items td {
+  padding: 12px;
+  border-bottom: 1px solid var(--beige-white);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-light);
+}
+.simpleCart_items th { 
+  font-weight: 700; 
+  color: var(--beige-white); 
+}
 
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .quantity-controls button {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius);
-      border: 1px solid var(--beige-white);
-      background: transparent;
-      color: var(--beige-white);
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .quantity-controls button:hover {
-      background: var(--beige-white);
-      color: var(--text-dark);
-    }
-    .quantity-controls input {
-      width: 40px;
-      text-align: center;
-      border: 1px solid var(--beige-white);
-      background: var(--card-dark);
-      color: var(--text-light);
-      border-radius: var(--radius);
-      font-size: 14px;
-    }
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.quantity-controls button {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius);
+  border: 1px solid var(--beige-white);
+  background: transparent;
+  color: var(--beige-white);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.quantity-controls button:hover {
+  background: var(--beige-white);
+  color: var(--text-dark);
+}
+.quantity-controls input {
+  width: 40px;
+  text-align: center;
+  border: 1px solid var(--beige-white);
+  background: var(--card-dark);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  font-size: 14px;
+}
 
-    .empty-cart-btn,
-    .simpleCart_items .simpleCart_remove {
-      display: inline-block;
-      color: var(--beige-white);
-      background: transparent;
-      border: 1px solid var(--beige-white);
-      padding: 8px 12px;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .empty-cart-btn:hover,
-    .simpleCart_items .simpleCart_remove:hover {
-      background: var(--beige-white);
-      color: var(--text-dark);
-    }
+.empty-cart-btn,
+.simpleCart_items .simpleCart_remove {
+  display: inline-block;
+  color: var(--beige-white);
+  background: transparent;
+  border: 1px solid var(--beige-white);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.empty-cart-btn:hover,
+.simpleCart_items .simpleCart_remove:hover {
+  background: var(--beige-white);
+  color: var(--text-dark);
+}
 
-    .cart-total {
-      margin-top: 12px;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      font-size: 1rem;
-    }
-    .cart-total .label { 
-      color: var(--text-light);
-      font-weight: 600; 
-    }
-    .cart-total .value { 
-      color: var(--text-light); 
-      font-size: 1rem; 
-    }
+.cart-total {
+  margin-top: 12px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+.cart-total .label { 
+  color: var(--text-light);
+  font-weight: 600; 
+}
+.cart-total .value { 
+  color: var(--text-light); 
+  font-size: 1rem; 
+}
 
-    #locker-field,
-    #omniva-locker-field { 
-      margin-top: 10px;
-    }
-    #locker-field select,
-    #omniva-locker-field select {
-      width: 100%;
-      padding: 10px;
-      border-radius: var(--radius);
-      border: 1px solid var(--beige-white);
-      background: var(--card-dark);
-      color: var(--text-light);
-      font-size: 14px;
-    }
+#locker-field,
+#omniva-locker-field { 
+  margin-top: 10px;
+}
+#locker-field select,
+#omniva-locker-field select {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--beige-white);
+  background: var(--card-dark);
+  color: var(--text-light);
+  font-size: 14px;
+}
 
-    .order-form label { 
-      display: block; 
-      color: var(--text-light);
-      font-weight: 600; 
-      margin-bottom: 6px;
-    }
-    .order-form input[type="text"],
-    .order-form input[type="email"],
-    .order-form input[type="tel"],
-    .order-form textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: var(--radius);
-      border: 1px solid var(--beige-white);
-      background: var(--card-dark);
-      color: var(--text-light);
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-    .order-form textarea { 
-      min-height: 60px;
-      resize: vertical; 
-    }
-    .order-form button {
-      display: block;
-      width: 100%;
-      padding: 10px 20px;
-      background: var(--beige-white);
-      border: 1px solid var(--beige-white);
-      color: var(--text-dark);
-      border-radius: var(--radius);
-      font-family: 'Lato', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    }
-    .order-form button:hover {
-      background: var(--beige-dark);
-      border-color: var(--beige-dark);
-      color: var(--text-dark);
-    }
-    .order-form button:active { 
-      transform: translateY(1px); 
-    }
+.order-form label { 
+  display: block; 
+  color: var(--text-light);
+  font-weight: 600; 
+  margin-bottom: 6px;
+}
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form input[type="tel"],
+.order-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--beige-white);
+  background: var(--card-dark);
+  color: var(--text-light);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.order-form textarea { 
+  min-height: 60px;
+  resize: vertical; 
+}
+.order-form button {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--beige-white);
+  border: 1px solid var(--beige-white);
+  color: var(--text-dark);
+  border-radius: var(--radius);
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.order-form button:hover {
+  background: var(--beige-dark);
+  border-color: var(--beige-dark);
+  color: var(--text-dark);
+}
+.order-form button:active { 
+  transform: translateY(1px); 
+}
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding-top: 60px;
-    }
-    .modal-content {
-      background: var(--card-dark);
-      margin: 5% auto;
-      padding: 24px;
-      border-radius: var(--radius);
-      width: 80%;
-      max-width: 600px;
-      color: var(--text-light);
-      position: relative;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    }
-    .close {
-      position: absolute;
-      right: 20px;
-      top: 12px;
-      color: var(--text-light);
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover,
-    .close:focus {
-      color: var(--beige-white);
-    }
-    .modal img {
-      width: 70%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      border-radius: var(--radius);
-      margin: 0 auto 16px;
-      display: block;
-    }
-    .modal h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      margin: 0 0 12px 0;
-      text-align: center;
-      color: var(--beige-white);
-    }
-    .modal .description {
-      font-size: 14px;
-      margin-bottom: 16px;
-      color: var(--text-light);
-      text-align: center;
-    }
-    .modal .price {
-      font-family: 'Lato', sans-serif;
-      font-weight: 600;
-      color: var(--text-light);
-      font-size: 1rem;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .modal .add-btn {
-      display: block;
-      width: 100%;
-      padding: 12px 0;
-      background: var(--beige-white);
-      border: 1px solid var(--beige-white);
-      color: var(--text-dark);
-      border-radius: var(--radius);
-      font-family: 'Lato', sans-serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    }
-    .modal .add-btn:hover {
-      background: var(--beige-dark);
-      color: var(--text-dark);
-    }
-    .modal .add-btn:active { 
-      transform: translateY(1px); 
-    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-top: 60px;
+}
+.modal-content {
+  background: var(--card-dark);
+  margin: 5% auto;
+  padding: 24px;
+  border-radius: var(--radius);
+  width: 80%;
+  max-width: 600px;
+  color: var(--text-light);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+.close {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  color: var(--text-light);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: var(--beige-white);
+}
+.modal img {
+  width: 70%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin: 0 auto 16px;
+  display: block;
+}
+.modal h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  margin: 0 0 12px 0;
+  text-align: center;
+  color: var(--beige-white);
+}
+.modal .description {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: var(--text-light);
+  text-align: center;
+}
+.modal .price {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.modal .add-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  background: var(--beige-white);
+  border: 1px solid var(--beige-white);
+  color: var(--text-dark);
+  border-radius: var(--radius);
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.modal .add-btn:hover {
+  background: var(--beige-dark);
+  color: var(--text-dark);
+}
+.modal .add-btn:active { 
+  transform: translateY(1px); 
+}
 
-    .cart-icon {
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-    }
-    .cart-icon svg {
-      width: 32px;
-      height: 32px;
-      fill: #FFFFFF;
-      transition: fill 0.3s ease;
-    }
-    .cart-icon:hover svg {
-      fill: #FFFFFF;
-    }
-    .cart-icon .cart-count {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background: var(--beige-white);
-      color: var(--text-dark);
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .cart-modal .modal-content {
-      max-width: 900px;
-      padding: 16px;
-      width: 90%;
-      position: relative;
-    }
-    #venipak-label,
-    #omniva-label,
-    #pickup-label,
-    #choose-locker-label,
-    #omniva-choose-locker-label {
-      color: var(--text-light);
-    }
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+}
+.cart-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: #FFFFFF;
+  transition: fill 0.3s ease;
+}
+.cart-icon:hover svg {
+  fill: #FFFFFF;
+}
+.cart-icon .cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--beige-white);
+  color: var(--text-dark);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.cart-modal .modal-content {
+  max-width: 900px;
+  padding: 16px;
+  width: 90%;
+  position: relative;
+}
+#venipak-label,
+#omniva-label,
+#pickup-label,
+#choose-locker-label,
+#omniva-choose-locker-label,
+#payment-label,
+#cash-label,
+#bank-label,
+#paypal-label {
+  color: var(--text-light);
+}
 
-    #order-confirmation-modal .modal-content p {
-      font-size: 14px;
-      margin: 12px 0;
-      color: var(--text-light);
-    }
-    #order-confirmation-modal .modal-content strong {
-      color: var(--beige-white);
-    }
-    .contact-soon {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      display: block;
-      margin-top: 12px;
-      color: var(--beige-white);
-    }
+#order-confirmation-modal .modal-content p {
+  font-size: 14px;
+  margin: 12px 0;
+  color: var(--text-light);
+}
+#order-confirmation-modal .modal-content strong {
+  color: var(--beige-white);
+}
+.contact-soon {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: block;
+  margin-top: 12px;
+  color: var(--beige-white);
+}
 
-    .social-media {
-      margin-top: 24px;
-      padding: 12px;
-      background: var(--card-dark);
-      border-radius: var(--radius);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-    .social-media h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text-light);
-      margin: 0;
-    }
-    .social-media .social-icons {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .social-media a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      transition: transform 0.3s ease;
-    }
-    .social-media a:hover {
-      transform: scale(1.1);
-    }
-    .social-media svg {
-      width: 32px;
-      height: 32px;
-      fill: var(--text-light);
-      transition: fill 0.3s ease;
-    }
-    .social-media a:hover svg {
-      fill: var(--beige-white);
-    }
+.social-media {
+  margin-top: 24px;
+  padding: 12px;
+  background: var(--card-dark);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.social-media h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin: 0;
+}
+.social-media .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.social-media a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+.social-media a:hover {
+  transform: scale(1.1);
+}
+.social-media svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--text-light);
+  transition: fill 0.3s ease;
+}
+.social-media a:hover svg {
+  fill: var(--beige-white);
+}
 
-    @media (max-width: 1100px) { 
-      .products-list { 
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      } 
-      .header-right { 
-        max-width: 320px; 
-      }
-      .cart-modal .modal-content {
-        max-width: 80%;
-        padding: 16px;
-      }
-    }
-    @media (max-width: 700px) { 
-      .products-list { 
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      .product-card { 
-        min-height: 300px;
-        padding: 12px;
-      }
-      .product-card img {
-        width: 100%;
-        aspect-ratio: 2 / 3;
-        max-height: 150px;
-        object-fit: cover;
-        border-radius: var(--radius);
-      }
-      header {
-        flex-wrap: nowrap;
-        gap: 12px;
-        justify-content: center;
-        padding-bottom: 12px;
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-      .header-title {
-        font-size: 1.2rem;
-      }
-      .header-left {
-        position: absolute;
-        left: 12px;
-        z-index: 10;
-      }
-      .header-center {
-        flex: 0;
-        justify-content: center;
-      }
-      .header-right {
-        position: absolute;
-        right: 12px;
-        z-index: 10;
-        max-width: 140px;
-        gap: 12px;
-      }
-      .hamburger {
-        width: 28px;
-        height: 28px;
-        padding: 4px;
-      }
-      .hamburger span {
-        height: 2px;
-        margin: 2px 0;
-        width: 100%;
-        background: #FFFFFF;
-      }
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(4.5px, 4.5px);
-      }
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(4.5px, -4.5px);
-      }
-      .simpleCart_items table { 
-        font-size: 12px;
-      }
-      .simpleCart_items .simpleCart_remove { 
-        padding: 6px 8px;
-        font-size: 12px;
-      }
-      .dropdown-menu { 
-        left: 12px; 
-        width: 90%;
-        max-width: 280px;
-      }
-      .dropdown-menu button {
-        font-size: 14px;
-        font-weight: 700;
-      }
-      .lang-selector .lang-btn { 
-        padding: 6px 10px; 
-        font-size: 12px;
-      }
-      .lang-dropdown { 
-        min-width: 100px; 
-      }
-      .phone-number { 
-        font-size: 12px;
-      }
-      .modal img {
-        max-width: 100%;
-        aspect-ratio: 3 / 4;
-        height: auto;
-        object-fit: cover;
-        border-radius: var(--radius);
-      }
-      .banner {
-        max-width: 100%;
-        margin: 0 auto 16px;
-        overflow: hidden;
-        box-sizing: border-box;
-      }
-      .banner img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        aspect-ratio: 750 / 238;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-      }
-      .top-bar {
-        font-size: 0.8rem;
-        padding: 4px 12px;
-      }
-      .top-bar span,
-      .top-bar a {
-        font-size: 1.0rem;
-        color: var(--text-light) !important;
-        text-decoration: none;
-      }
-      .cart-icon {
-        width: 36px;
-        height: 36px;
-      }
-      .cart-icon svg {
-        width: 24px;
-        height: 24px;
-        fill: #FFFFFF;
-      }
-      .cart-icon .cart-count {
-        width: 16px;
-        height: 16px;
-        font-size: 10px;
-        top: -8px;
-        right: -8px;
-      }
-      .modal {
-        padding-top: 10px;
-      }
-      .cart-modal .modal-content {
-        width: 95%;
-        max-width: 100%;
-        padding: 12px;
-        margin: 2% auto;
-        max-height: 80vh;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-      }
-      .cart-modal .section-title {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-      }
-      .cart-modal .cart-items {
-        font-size: 12px;
-        margin-top: 8px;
-      }
-      .cart-modal .quantity-controls button {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
-      }
-      .cart-modal .quantity-controls input {
-        width: 36px;
-        font-size: 12px;
-      }
-      .cart-modal .cart-total {
-        font-size: 0.9rem;
-        margin-top: 8px;
-      }
-      .cart-modal .empty-cart-btn {
-        padding: 6px 10px;
-        font-size: 12px;
-        margin-top: 8px;
-      }
-      .cart-modal .order-form input,
-      .cart-modal .order-form textarea,
-      .cart-modal .order-form select {
-        font-size: 12px;
-        padding: 8px;
-      }
-      .cart-modal .order-form button {
-        padding: 10px 20px;
-        font-size: 12px;
-        width: 100%;
-        position: sticky;
-        bottom: 0;
-        background: var(--beige-white);
-        z-index: 10;
-        margin-top: 12px;
-      }
-      .social-media {
-        margin-top: 24px;
-        padding: 8px;
-        gap: 12px;
-      }
-      .social-media h3 {
-        font-size: 1.0rem;
-      }
-      .social-media a {
-        width: 32px;
-        height: 32px;
-      }
-      .social-media svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  </style>
+#paypal-button-container {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+@media (max-width: 1100px) { 
+  .products-list { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  } 
+  .header-right { 
+    max-width: 320px; 
+  }
+  .cart-modal .modal-content {
+    max-width: 80%;
+    padding: 16px;
+  }
+}
+@media (max-width: 700px) { 
+  .products-list { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .product-card { 
+    min-height: 300px;
+    padding: 12px;
+  }
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+  header {
+    flex-wrap: nowrap;
+    gap: 12px;
+    justify-content: center;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .header-title {
+    font-size: 1.2rem;
+  }
+  .header-left {
+    position: absolute;
+    left: 12px;
+    z-index: 10;
+  }
+  .header-center {
+    flex: 0;
+    justify-content: center;
+  }
+  .header-right {
+    position: absolute;
+    right: 12px;
+    z-index: 10;
+    max-width: 140px;
+    gap: 12px;
+  }
+  .hamburger {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+  }
+  .hamburger span {
+    height: 2px;
+    margin: 2px 0;
+    width: 100%;
+    background: #FFFFFF;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(4.5px, 4.5px);
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(4.5px, -4.5px);
+  }
+  .simpleCart_items table { 
+    font-size: 12px;
+  }
+  .simpleCart_items .simpleCart_remove { 
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .dropdown-menu { 
+    left: 12px; 
+    width: 90%;
+    max-width: 280px;
+  }
+  .dropdown-menu button {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .lang-selector .lang-btn { 
+    padding: 6px 10px; 
+    font-size: 12px;
+  }
+  .lang-dropdown { 
+    min-width: 100px; 
+  }
+  .phone-number { 
+    font-size: 12px;
+  }
+  .modal img {
+    max-width: 100%;
+    aspect-ratio: 3 / 4;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+  .banner {
+    max-width: 100%;
+    margin: 0 auto 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .banner img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 750 / 238;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  .top-bar {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+  }
+  .top-bar span,
+  .top-bar a {
+    font-size: 1.0rem;
+    color: var(--text-light) !important;
+    text-decoration: none;
+  }
+  .cart-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .cart-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF;
+  }
+  .cart-icon .cart-count {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -8px;
+    right: -8px;
+  }
+  .modal {
+    padding-top: 10px;
+  }
+  .cart-modal .modal-content {
+    width: 95%;
+    max-width: 100%;
+    padding: 12px;
+    margin: 2% auto;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-modal .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .cart-modal .cart-items {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .cart-modal .quantity-controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .cart-modal .quantity-controls input {
+    width: 36px;
+    font-size: 12px;
+  }
+  .cart-modal .cart-total {
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+  .cart-modal .empty-cart-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .cart-modal .order-form input,
+  .cart-modal .order-form textarea,
+  .cart-modal .order-form select {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .cart-modal .order-form button {
+    padding: 10px 20px;
+    font-size: 12px;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    background: var(--beige-white);
+    z-index: 10;
+    margin-top: 12px;
+  }
+  .social-media {
+    margin-top: 24px;
+    padding: 8px;
+    gap: 12px;
+  }
+  .social-media h3 {
+    font-size: 1.0rem;
+  }
+  .social-media a {
+    width: 32px;
+    height: 32px;
+  }
+  .social-media svg {
+    width: 24px;
+    height: 24px;
+  }
+  #paypal-button-container {
+    max-width: 250px;
+  }
+}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -937,6 +954,7 @@
           <div class="dropdown-content" id="payment">
             <p>Skaidrā naudā vai ar kredītkarti veikalā</p>
             <p>Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)</p>
+            <p>PayPal</p>
           </div>
         </div>
       </div>
@@ -958,7 +976,6 @@
         </div>
       </div>
     </header>
-
     <main>
       <div class="banner">
         <img src="photo/baner.jpg" alt="Promotional Banner">
@@ -982,80 +999,100 @@
         </div>
       </div>
     </main>
-  </div>
 
-  <div id="product-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <img src="" alt="">
-      <h3></h3>
-      <p class="description"></p>
-      <div class="price"></div>
-      <a href="javascript:;" class="add-btn">Pievienot grozam</a>
+    <div id="product-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img src="" alt="">
+        <h3></h3>
+        <p class="description"></p>
+        <div class="price"></div>
+        <a href="javascript:;" class="add-btn">Pievienot grozam</a>
+      </div>
     </div>
-  </div>
 
-  <div id="cart-modal" class="modal cart-modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3 class="section-title" id="cart-title">Grozs</h3>
-      <div class="cart-items" style="margin-top:8px;"><div class="simpleCart_items"></div></div>
-      <div class="cart-total" style="margin-top:8px;">
-        <div class="label" id="cart-total-label">Kopā:</div>
-        <div class="value"><span class="simpleCart_total">0.00</span> EUR</div>
-      </div>
-      <div style="margin-top:8px;">
-        <a href="javascript:;" class="empty-cart-btn simpleCart_empty" id="empty-cart">Iztīrīt grozu</a>
-      </div>
-      <div style="margin-top:16px;">
-        <h3 class="section-title" id="delivery-title">Piegāde</h3>
+    <div id="cart-modal" class="modal cart-modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 class="section-title" id="cart-title">Grozs</h3>
+        <div class="cart-items" style="margin-top:8px;"><div class="simpleCart_items"></div></div>
+        <div class="cart-total" style="margin-top:8px;">
+          <div class="label" id="cart-total-label">Kopā:</div>
+          <div class="value"><span class="simpleCart_total">0.00</span> EUR</div>
+        </div>
         <div style="margin-top:8px;">
-          <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px;">
-            <input type="radio" name="delivery" value="Venipak pakomāts" required>
-            <span id="venipak-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Venipak pakomāts (1–3 darba dienas, 4.00 EUR)</span>
-          </label>
-          <div id="locker-field" class="hidden">
-            <label id="choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
-            <select id="locker-select" name="locker" required><option value="">Ielādē pakomātus...</option></select>
+          <a href="javascript:;" class="empty-cart-btn simpleCart_empty" id="empty-cart">Iztīrīt grozu</a>
+        </div>
+        <div style="margin-top:16px;">
+          <h3 class="section-title" id="delivery-title">Piegāde</h3>
+          <div style="margin-top:8px;">
+            <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px;">
+              <input type="radio" name="delivery" value="Venipak pakomāts" required>
+              <span id="venipak-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Venipak pakomāts (1–3 darba dienas, 4.00 EUR)</span>
+            </label>
+            <div id="locker-field" class="hidden">
+              <label id="choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
+              <select id="locker-select" name="locker" required><option value="">Ielādē pakomātus...</option></select>
+            </div>
+            <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px; margin-top:8px;">
+              <input type="radio" name="delivery" value="Omniva pakomāts" required>
+              <span id="omniva-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Omniva pakomāts (1–3 darba dienas, 4.00 EUR)</span>
+            </label>
+            <div id="omniva-locker-field" class="hidden">
+              <label id="omniva-choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
+              <select id="omniva-locker-select" name="omniva-locker" required><option value="">Ielādē pakomātus...</option></select>
+            </div>
+            <label id="pickup-label-container" style="display:block; margin-top:8px; color:var(--text-light); font-weight:600;">
+              <input type="radio" name="delivery" value="Pašizņemšana Mārupē">
+              <span id="pickup-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
+            </label>
           </div>
-          <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px; margin-top:8px;">
-            <input type="radio" name="delivery" value="Omniva pakomāts" required>
-            <span id="omniva-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Omniva pakomāts (1–3 darba dienas, 4.00 EUR)</span>
-          </label>
-          <div id="omniva-locker-field" class="hidden">
-            <label id="omniva-choose-locker-label" style="display:block; color:var(--text-light); margin-bottom:6px;">Izvēlieties pakomātu:</label>
-            <select id="omniva-locker-select" name="omniva-locker" required><option value="">Ielādē pakomātus...</option></select>
+        </div>
+        <div style="margin-top:16px;">
+          <h3 class="section-title" id="payment-title">Apmaksas veids</h3>
+          <div style="margin-top:8px;">
+            <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px;">
+              <input type="radio" name="payment" value="Skaidrā naudā" required>
+              <span id="cash-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Skaidrā naudā</span>
+            </label>
+            <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px; margin-top:8px;">
+              <input type="radio" name="payment" value="Bankas pārskaitījums">
+              <span id="bank-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Bankas pārskaitījums</span>
+            </label>
+            <label style="display:block; color:var(--text-light); font-weight:600; margin-bottom:6px; margin-top:8px;">
+              <input type="radio" name="payment" value="PayPal">
+              <span id="paypal-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">PayPal</span>
+            </label>
           </div>
-          <label id="pickup-label-container" style="display:block; margin-top:8px; color:var(--text-light); font-weight:600;">
-            <input type="radio" name="delivery" value="Pašizņemšana Mārupē">
-            <span id="pickup-label" style="margin-left:8px; color:var(--text-light); font-weight:600;">Pašizņemšana Mārupē, Lielā 19 k1 (BEZMAKSAS)</span>
-          </label>
+        </div>
+        <div style="margin-top:16px;">
+          <h3 class="section-title" id="order-title">Noformēt pasūtījumu</h3>
+          <form class="order-form" id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="c49dd88b-948d-4903-9295-d9ab1c7b8afc">
+            <input type="hidden" name="email_to" value="galasmail@inbox.lv">
+            <input type="hidden" name="cart_contents" id="cart_contents" value="">
+            <input type="hidden" name="order_id" id="order_id" value="">
+            <input type="hidden" name="paypal_transaction_id" id="paypal_transaction_id" value="">
+            <input type="hidden" name="payment_method" id="payment_method" value="">
+            <label id="name-label">Jūsu vārds:<input type="text" name="customer_name" required></label>
+            <label id="email-label">E-pasts:<input type="email" name="email" required></label>
+            <label id="phone-label">Telefons:<input type="tel" name="phone" required></label>
+            <label id="comments-label">Komentāri:<textarea name="message" rows="4"></textarea></label>
+            <button type="submit" id="order-button">Pasūtīt</button>
+          </form>
+          <div id="paypal-button-container"></div>
         </div>
       </div>
-      <div style="margin-top:16px;">
-        <h3 class="section-title" id="order-title">Noformēt pasūtījumu</h3>
-        <form class="order-form" id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="c49dd88b-948d-4903-9295-d9ab1c7b8afc">
-          <input type="hidden" name="email_to" value="galasmail@inbox.lv">
-          <input type="hidden" name="cart_contents" id="cart_contents" value="">
-          <input type="hidden" name="order_id" id="order_id" value="">
-          <label id="name-label">Jūsu vārds:<input type="text" name="customer_name" required></label>
-          <label id="email-label">E-pasts:<input type="email" name="email" required></label>
-          <label id="phone-label">Telefons:<input type="tel" name="phone" required></label>
-          <label id="comments-label">Komentāri:<textarea name="message" rows="4"></textarea></label>
-          <button type="submit" id="order-button">Pasūtīt</button>
-        </form>
-      </div>
     </div>
-  </div>
 
-  <div id="order-confirmation-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3 id="order-confirmation-title">Pasūtījums saņemts</h3>
-      <p><strong id="order-id-label">Pasūtījuma ID:</strong> <span id="confirmation-order-id"></span></p>
-      <p><strong id="order-details-label">Pasūtījuma detaļas:</strong></p>
-      <p id="confirmation-cart-details"></p>
+    <div id="order-confirmation-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="order-confirmation-title">Pasūtījums saņemts</h3>
+        <p><strong id="order-id-label">Pasūtījuma ID:</strong> <span id="confirmation-order-id"></span></p>
+        <p><strong id="order-details-label">Pasūtījuma detaļas:</strong></p>
+        <p id="confirmation-cart-details"></p>
+      </div>
     </div>
   </div>
 
@@ -1079,6 +1116,10 @@
         pickupOption: "Pašizņemšana Mārupē",
         chooseLocker: "Izvēlieties pakomātu:", 
         orderTitle: "Noformēt pasūtījumu", 
+        paymentTitle: "Apmaksas veids",
+        cash: "Skaidrā naudā",
+        bank: "Bankas pārskaitījums",
+        paypal: "PayPal",
         name: "Jūsu vārds:", 
         email: "E-pasts:",
         phone: "Telefons:", 
@@ -1093,12 +1134,15 @@
         orderDetailsLabel: "Pasūtījuma detaļas:",
         totalLabel: "Kopā:",
         deliveryLabel: "Piegāde:",
+        paymentLabel: "Apmaksas veids:",
         lockerLabel: "Pakomāts:",
         contactSoon: "Drīzumā mēs ar jums sazināsimies, lai precizētu detaļas",
         errorEmptyCart: "Grozs ir tukšs",
         errorDelivery: "Lūdzu, izvēlieties piegādes metodi",
+        errorPayment: "Lūdzu, izvēlieties apmaksas veidu",
         errorLocker: "Lūdzu, izvēlieties pakomātu",
         errorSubmission: "Pasūtījuma nosūtīšana neizdevās. Lūdzu, mēģiniet vēlreiz.",
+        errorPayPal: "Maksājums ar PayPal tika atcelts vai neizdevās.",
         socialMedia: "Seko mums līdzi",
         contactsContent: [
           "honey@gmail.com",
@@ -1111,7 +1155,8 @@
         ],
         paymentContent: [
           "Skaidrā naudā mūsu veikalā",
-          "Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)"
+          "Bankas pārskaitījums (mēs sagatavosim rēķinu un nosūtīsim uz Jūsu noradīto e-pastu)",
+          "PayPal"
         ],
         products: [
           {name: "Svece", price: "4.00", img: "photo/svece.jpg", description: "Svece burciņā no bišu vaska ar medus un mājīguma aromātu. Augstums – 3,5 cm. Diametrs – 5 cm. Svars – 50 g."},
@@ -1135,6 +1180,10 @@
         pickupOption: "Самовывоз в Марупе",
         chooseLocker: "Выберите пакомат:",
         orderTitle: "Оформить заказ", 
+        paymentTitle: "Способ оплаты",
+        cash: "Наличные",
+        bank: "Банковский перевод",
+        paypal: "PayPal",
         name: "Ваше имя:", 
         email: "E-mail:", 
         phone: "Телефон:", 
@@ -1149,12 +1198,15 @@
         orderDetailsLabel: "Детали заказа:",
         totalLabel: "Итого:",
         deliveryLabel: "Доставка:",
+        paymentLabel: "Способ оплаты:",
         lockerLabel: "Пакомат:",
         contactSoon: "В ближайшее время мы с Вами свяжемся для уточнения деталей",
         errorEmptyCart: "Корзина пуста",
         errorDelivery: "Пожалуйста, выберите способ доставки",
+        errorPayment: "Пожалуйста, выберите способ оплаты",
         errorLocker: "Пожалуйста, выберите пакомат",
         errorSubmission: "Не удалось отправить заказ. Пожалуйста, попробуйте снова.",
+        errorPayPal: "Оплата через PayPal была отменена или не удалась.",
         socialMedia: "Подписывайтесь на нас",
         contactsContent: [
           "honey@gmail.com",
@@ -1167,7 +1219,8 @@
         ],
         paymentContent: [
           "Наличными в нашем магазине",
-          "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)"
+          "Банковский перевод (мы подготовим счёт и отправим на указанный вами e-mail)",
+          "PayPal"
         ],
         products: [
           {name: "Свеча", price: "4.00", img: "photo/svece.jpg", description: "Свеча в банке из пчелиного воска с ароматом мёда и домашнего уюта. Высота - 3,5 см. Диаметр - 5 см. Вес - 50 г"},
@@ -1219,6 +1272,7 @@
       const t = translations[lang];
       $('#cart-title').text(t.cartTitle);
       $('#delivery-title').text(t.deliveryTitle);
+      $('#payment-title').text(t.paymentTitle);
       $('#order-title').text(t.orderTitle);
       $('#cart-total-label').text(t.cartTotal);
       $('#empty-cart').text(t.emptyCart);
@@ -1228,6 +1282,9 @@
       $('#omniva-choose-locker-label').text(t.chooseLocker);
       $('#pickup-label-container').show();
       $('#pickup-label').text(t.pickup || "");
+      $('#cash-label').text(t.cash);
+      $('#bank-label').text(t.bank);
+      $('#paypal-label').text(t.paypal);
       $('#name-label').contents().first()[0].textContent = t.name;
       $('#email-label').contents().first()[0].textContent = t.email;
       $('#phone-label').contents().first()[0].textContent = t.phone;
@@ -1389,6 +1446,17 @@
         updateCartTotal();
       });
 
+      $('input[name="payment"]').on('change', function() {
+        const paymentType = $(this).val();
+        if (paymentType === "PayPal") {
+          $('#paypal-button-container').show();
+          $('#order-button').hide();
+        } else {
+          $('#paypal-button-container').hide();
+          $('#order-button').show();
+        }
+      });
+
       function updateCartTotal() {
         let itemsTotal = parseFloat(simpleCart.total()) || 0;
         let deliveryCost = 0;
@@ -1443,11 +1511,27 @@
         $('#cart-modal').show();
       });
 
-      $('#orderForm').on('submit', function(e) {
-        e.preventDefault();
+      $('.close').on('click', function() {
+        $(this).closest('.modal').hide();
+      });
+
+      $(document).on('click', '.product-card', function() {
+        const $card = $(this);
+        const name = $card.find('.item_name').text();
+        const price = $card.find('.item_price').text();
+        const img = $card.find('img').attr('src');
+        const description = $card.data('description');
+
+        $('#product-modal img').attr('src', img).attr('alt', name);
+        $('#product-modal h3').text(name);
+        $('#product-modal .description').text(description);
+        $('#product-modal .price').text(price + ' EUR');
+        $('#product-modal').show();
+      });
+
+      function validateForm() {
         const lang = $('#current-lang').text().toLowerCase();
         const t = translations[lang];
-
         var items = simpleCart.items();
         if (!items.length) {
           alert(t.errorEmptyCart);
@@ -1466,23 +1550,41 @@
           alert(t.errorLocker);
           return false;
         }
+        var paymentType = $('input[name="payment"]:checked').val();
+        if (!paymentType) {
+          alert(t.errorPayment);
+          return false;
+        }
         var email = $('input[name="email"]').val();
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           alert(t.email + " некорректен");
           return false;
         }
+        return true;
+      }
 
-        var summaryArr = items.map(it => it.get('quantity') + ' × ' + it.get('name') + ' (' + parseFloat(it.get('price')).toFixed(2) + ' EUR)');
+      function submitOrderForm(transactionId = '') {
+        const lang = $('#current-lang').text().toLowerCase();
+        const t = translations[lang];
+
+        if (!validateForm()) return;
+
+        var items = simpleCart.items();
+        var deliveryType = $('input[name="delivery"]:checked').val();
+        var paymentType = $('input[name="payment"]:checked').val();
         var itemsTotal = parseFloat(simpleCart.total()) || 0;
         var deliveryCost = (deliveryType === "Venipak pakomāts" || deliveryType === "Omniva pakomāts") ? 4 : 0;
         var totalWithDelivery = (itemsTotal + deliveryCost).toFixed(2);
         var lockerAddr = deliveryType === "Venipak pakomāts" ? $('#locker-select option:selected').text() : (deliveryType === "Omniva pakomāts" ? $('#omniva-locker-select option:selected').text() : '');
         var orderId = generateSimpleOrderId();
         var deliveryText = deliveryType === "Pašizņemšana Mārupē" ? t.pickupOption : deliveryType;
-        var cartTextForModal = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType.includes("pakomāts") ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n<span class="contact-soon">${t.contactSoon}</span>`;
-        var cartTextForEmail = `Order ID: ${orderId}\n\n` + summaryArr.join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType.includes("pakomāts") ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n\n**${t.contactSoon}**`;
+        var cartTextForModal = `Order ID: ${orderId}\n\n` + items.map(it => it.get('quantity') + ' × ' + it.get('name') + ' (' + parseFloat(it.get('price')).toFixed(2) + ' EUR)').join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType.includes("pakomāts") ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n${t.paymentLabel} ${paymentType}` + (transactionId ? `\nPayPal Transaction ID: ${transactionId}` : '') + `\n\n<span class="contact-soon">${t.contactSoon}</span>`;
+        var cartTextForEmail = `Order ID: ${orderId}\n\n` + items.map(it => it.get('quantity') + ' × ' + it.get('name') + ' (' + parseFloat(it.get('price')).toFixed(2) + ' EUR)').join('\n') + `\n${t.totalLabel} ${totalWithDelivery} EUR\n${t.deliveryLabel} ${deliveryText}` + (deliveryType.includes("pakomāts") ? `\n${t.lockerLabel} ${lockerAddr}` : '') + `\n${t.paymentLabel} ${paymentType}` + (transactionId ? `\nPayPal Transaction ID: ${transactionId}` : '') + `\n\n**${t.contactSoon}**`;
+        
         $('#cart_contents').val(cartTextForEmail);
         $('#order_id').val(orderId);
+        $('#paypal_transaction_id').val(transactionId);
+        $('#payment_method').val(paymentType);
 
         $('#confirmation-order-id').text(orderId);
         $('#confirmation-cart-details').html(cartTextForModal.replace(/\n/g, '<br>'));
@@ -1533,53 +1635,68 @@
             }
           }
         });
-      });
+      }
 
-      const modal = $('#product-modal');
-      const cartModal = $('#cart-modal');
-      const confirmationModal = $('#order-confirmation-modal');
-      const closeBtn = $('.close');
-
-      $('#products-list').on('click', '.product-card', function(e) {
-        if ($(e.target).closest('.add-btn').length) {
+      $('#orderForm').on('submit', function(e) {
+        e.preventDefault();
+        const paymentType = $('input[name="payment"]:checked').val();
+        if (paymentType === "PayPal") {
+          // PayPal payment will be handled by the PayPal button
           return;
         }
+        submitOrderForm();
+      });
 
-        const card = $(this);
-        modal.find('img').attr('src', card.find('img').attr('src'));
-        modal.find('h3').text(card.find('.item_name').text());
-        modal.find('.description').html(card.data('description'));
-        modal.find('.price').text(card.find('.item_price').text() + ' EUR');
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          if (!validateForm()) {
+            const lang = $('#current-lang').text().toLowerCase();
+            const t = translations[lang];
+            alert(t.errorPayPal);
+            return;
+          }
 
-        modal.find('.add-btn').off('click').on('click', function() {
-          simpleCart.add({
-            name: card.find('.item_name').text(),
-            price: parseFloat(card.find('.item_price').text()),
-            quantity: 1
+          var items = simpleCart.items();
+          var deliveryType = $('input[name="delivery"]:checked').val();
+          var itemsTotal = parseFloat(simpleCart.total()) || 0;
+          var deliveryCost = (deliveryType === "Venipak pakomāts" || deliveryType === "Omniva pakomāts") ? 4 : 0;
+          var totalWithDelivery = (itemsTotal + deliveryCost).toFixed(2);
+
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: totalWithDelivery,
+                currency_code: "EUR",
+                breakdown: {
+                  item_total: { value: itemsTotal.toFixed(2), currency_code: "EUR" },
+                  shipping: { value: deliveryCost.toFixed(2), currency_code: "EUR" }
+                }
+              },
+              items: items.map(item => ({
+                name: item.get('name'),
+                unit_amount: { value: item.get('price'), currency_code: "EUR" },
+                quantity: item.get('quantity')
+              }))
+            }]
           });
-          modal.hide();
-        });
-
-        modal.show();
-      });
-
-      closeBtn.on('click', function() {
-        modal.hide();
-        cartModal.hide();
-        confirmationModal.hide();
-      });
-
-      $(window).on('click', function(e) {
-        if (e.target === modal[0]) {
-          modal.hide();
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            submitOrderForm(details.id);
+          });
+        },
+        onCancel: function(data) {
+          const lang = $('#current-lang').text().toLowerCase();
+          const t = translations[lang];
+          alert(t.errorPayPal);
+        },
+        onError: function(err) {
+          const lang = $('#current-lang').text().toLowerCase();
+          const t = translations[lang];
+          console.error('PayPal error:', err);
+          alert(t.errorPayPal);
         }
-        if (e.target === cartModal[0]) {
-          cartModal.hide();
-        }
-        if (e.target === confirmationModal[0]) {
-          confirmationModal.hide();
-        }
-      });
+      }).render('#paypal-button-container');
     });
   </script>
 </body>
